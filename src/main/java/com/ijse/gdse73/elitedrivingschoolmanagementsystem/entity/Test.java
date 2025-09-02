@@ -14,10 +14,14 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="test")
+
 public class Test {
+
     @Id
     @Column(name = "test_id")
     private String id;
 
+    @Column(nullable = false, unique = true)
     private String name;
+
 }

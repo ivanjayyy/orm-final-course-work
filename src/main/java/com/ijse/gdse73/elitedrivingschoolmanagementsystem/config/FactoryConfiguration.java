@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class FactoryConfiguration {
+
     private static FactoryConfiguration factoryConfiguration;
     private final SessionFactory sessionFactory;
 
@@ -23,14 +24,18 @@ public class FactoryConfiguration {
                 .addAnnotatedClass(Test.class);
 
         Properties properties = new java.util.Properties();
+
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
+
             if (input != null) {
                 properties.load(input);
                 configuration.addProperties(properties);
+
             } else {
                 throw new java.io.FileNotFoundException("hibernate.properties not found in classpath");
             }
+
         } catch (java.io.IOException e) {
             throw new RuntimeException("Failed to load hibernate.properties", e);
         }
@@ -49,4 +54,5 @@ public class FactoryConfiguration {
     public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
+
 }
