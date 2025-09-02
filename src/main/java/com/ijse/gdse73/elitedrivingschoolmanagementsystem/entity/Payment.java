@@ -7,8 +7,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 
 @Entity
 @Table(name="payment_table")
@@ -20,7 +18,7 @@ public class Payment {
     private String id;
 
     @Column(nullable = false)
-    private String status;
+    private boolean status;
 
 
 
