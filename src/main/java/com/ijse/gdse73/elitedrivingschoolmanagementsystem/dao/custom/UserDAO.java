@@ -2,5 +2,5 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.SuperDAO;
 
-public interface StudentDAO extends SuperDAO {
+public interface UserDAO extends SuperDAO {
 }

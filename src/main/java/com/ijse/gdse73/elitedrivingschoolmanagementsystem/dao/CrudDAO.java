@@ -1,4 +1,14 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao;
 
-public interface CrudDAO {
+import java.util.ArrayList;
+
+public interface CrudDAO<T> extends SuperDAO {
+
+    boolean save(T xxx);
+    boolean update(T xxx);
+    boolean delete(String xxx);
+    ArrayList<T> search(String xxx);
+    ArrayList<T> getAll();
+    String getNextId();
+
 }
