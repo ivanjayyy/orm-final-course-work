@@ -7,7 +7,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 
 @Entity
 @Table(name="student_table")
@@ -44,11 +45,11 @@ public class Student {
 
 
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Payment> payment;
-
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Lesson> lesson;
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+//    private List<Payment> payment;
+//
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+//    private List<Lesson> lesson;
 
     @ManyToMany
     @JoinTable(name = "student_detail_table", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))

@@ -7,7 +7,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 
 @Entity
 @Table(name="instructor_table")
@@ -33,7 +34,7 @@ public class Instructor {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
-    private List<Lesson> lesson;
+//    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+//    private List<Lesson> lesson;
 
 }

@@ -13,5 +13,8 @@ public class LessonDTO {
     private String lessonId;
     private String date;
     private String status;
+    private String courseId;
+    private String instructorId;
+    private String studentId;
 
 }

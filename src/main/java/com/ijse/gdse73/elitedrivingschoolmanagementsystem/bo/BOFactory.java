@@ -15,12 +15,12 @@ public class BOFactory {
 
     public SuperBO getBO(BOTypes boType) {
         return switch (boType) {
-            case User -> new UserBOImpl();
-            case Course -> new CourseBOImpl();
-            case Instructor -> new InstructorBOImpl();
-            case Student -> new StudentBOImpl();
-            case Payment -> new PaymentBOImpl();
-            case Lesson -> new LessonBOImpl();
+            case USER -> new UserBOImpl();
+            case COURSE -> new CourseBOImpl();
+            case INSTRUCTOR -> new InstructorBOImpl();
+            case STUDENT -> new StudentBOImpl();
+            case PAYMENT -> new PaymentBOImpl();
+            case LESSON -> new LessonBOImpl();
         };
     }
 

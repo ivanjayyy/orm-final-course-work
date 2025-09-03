@@ -34,16 +34,16 @@ public class Course {
 
 
 
-    @OneToMany(mappedBy = "course")
-    private List<Instructor> instructor;
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Lesson> lesson;
-
-    @ManyToMany(mappedBy = "course")
-    private List<Student> student;
-
-    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
-    private Payment payment;
+//    @OneToMany(mappedBy = "course")
+//    private List<Instructor> instructor;
+//
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    private List<Lesson> lesson;
+//
+//    @ManyToMany(mappedBy = "course")
+//    private List<Student> student;
+//
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    private List<Payment> payment;
 
 }

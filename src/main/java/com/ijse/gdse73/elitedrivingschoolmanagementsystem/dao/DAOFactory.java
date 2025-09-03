@@ -15,12 +15,12 @@ public class DAOFactory {
 
     public SuperDAO getDAO(DAOTypes daoType) {
         return switch (daoType) {
-            case User -> new UserDAOImpl();
-            case Course -> new CourseDAOImpl();
-            case Instructor -> new InstructorDAOImpl();
-            case Student -> new StudentDAOImpl();
-            case Payment -> new PaymentDAOImpl();
-            case Lesson -> new LessonDAOImpl();
+            case USER -> new UserDAOImpl();
+            case COURSE -> new CourseDAOImpl();
+            case INSTRUCTOR -> new InstructorDAOImpl();
+            case STUDENT -> new StudentDAOImpl();
+            case PAYMENT -> new PaymentDAOImpl();
+            case LESSON -> new LessonDAOImpl();
         };
     }
 

@@ -3,7 +3,7 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom.impl;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.config.FactoryConfiguration;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom.LessonDAO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Lesson;
-import jakarta.persistence.Query;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

@@ -3,9 +3,9 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom.impl;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.config.FactoryConfiguration;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom.CourseDAO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Course;
-import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 
