@@ -1,0 +1,6 @@
+package com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom;
+
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.SuperBO;
+
+public interface PaymentBO extends SuperBO {
+}
