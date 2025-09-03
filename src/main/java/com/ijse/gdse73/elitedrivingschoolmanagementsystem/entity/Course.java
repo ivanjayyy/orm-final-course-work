@@ -2,14 +2,14 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 
 @Entity
 @Table(name="course_table")
