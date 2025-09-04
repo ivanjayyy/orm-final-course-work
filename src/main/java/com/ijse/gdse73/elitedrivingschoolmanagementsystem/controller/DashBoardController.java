@@ -15,7 +15,7 @@ public class DashBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        navigateTo("/view/CoursesPage.fxml");
+        navigateTo("/view/Courses/CoursesPage.fxml");
     }
 
     public void navigateTo(String path) {
@@ -40,9 +40,10 @@ public class DashBoardController implements Initializable {
     }
 
     public void btnInstructorsOnAction(MouseEvent mouseEvent) {
+        navigateTo("/view/Instructors/InstructorsPage.fxml");
     }
 
     public void btnCoursesOnAction(MouseEvent mouseEvent) {
-
+        navigateTo("/view/Courses/CoursesPage.fxml");
     }
 }

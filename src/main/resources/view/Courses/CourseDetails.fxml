@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ancCourseDetails" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.CourseDetailsController">
+<AnchorPane fx:id="ancCourseDetails" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course.CourseDetailsController">
    <children>
       <VBox alignment="CENTER" layoutX="518.0" layoutY="291.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 0 0 20px 20px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -42,7 +42,7 @@
                               </Label>
                               <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
                                  </image>
                               </ImageView>
                            </children>
@@ -60,7 +60,7 @@
                               </Label>
                               <ImageView fitHeight="32.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../Users/ivanj/Downloads/icons8-logout.gif" />
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-logout.gif" />
                                  </image>
                               </ImageView>
                            </children>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ancCourseView" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.CourseViewController">
+<AnchorPane fx:id="ancCourseView" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course.CourseViewController">
    <children>
       <HBox alignment="CENTER" layoutX="80.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0 0 20px 20px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -85,7 +85,7 @@
                      <children>
                         <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/ivanj/Downloads/icons8-back.gif" />
+                              <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-back.gif" />
                            </image>
                         </ImageView>
                      </children>
@@ -112,7 +112,7 @@
                         </Label>
                         <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
+                              <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
                            </image>
                         </ImageView>
                      </children>
@@ -129,7 +129,7 @@
                         </Label>
                         <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../Users/ivanj/Downloads/icons8-delete.gif" />
+                              <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-delete.gif" />
                            </image>
                         </ImageView>
                      </children>

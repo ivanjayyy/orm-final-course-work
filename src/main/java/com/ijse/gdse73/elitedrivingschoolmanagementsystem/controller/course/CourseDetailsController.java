@@ -1,4 +1,4 @@
-package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller;
+package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +16,7 @@ public class CourseDetailsController implements Initializable {
     public void btnViewOnAction(MouseEvent actionEvent) {
         try {
             ancCourseDetails.getChildren().clear();
-            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/CourseView.fxml"));
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Courses/CourseView.fxml"));
 
             anchorPane.prefWidthProperty().bind(ancCourseDetails.widthProperty());
             anchorPane.prefHeightProperty().bind(ancCourseDetails.heightProperty());

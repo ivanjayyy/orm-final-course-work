@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1640.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorsPageController">
+    <children>
+        <VBox layoutX="219.0" layoutY="219.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="126.0" prefWidth="1630.0">
+                    <children>
+                        <Label text="INSTRUCTORS">
+                            <font>
+                                <Font name="System Bold" size="50.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
+                    <children>
+                        <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
+                        <VBox layoutX="670.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
+                        <VBox layoutX="825.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
+                    </children>
+                </HBox>
+                <AnchorPane fx:id="ancInstructors" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: black;" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
