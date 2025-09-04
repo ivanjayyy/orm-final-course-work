@@ -6,7 +6,7 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires java.sql;
-    requires com.ijse.gdse73.elitedrivingschoolmanagementsystem;
+    requires javafx.graphics;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.config to jakarta.persistence;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity to org.hibernate.orm.core;
