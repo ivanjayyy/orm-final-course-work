@@ -9,11 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController">
    <children>
@@ -88,26 +84,10 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="500.0" prefWidth="680.0">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 10;" text="LOG IN">
+                        <JFXButton fx:id="btnLogin" buttonType="RAISED" onAction="#btnLoginOnAction" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 20; -fx-background-radius: 20;" text="LOG IN">
                            <font>
                               <Font name="System Bold" size="28.0" />
                            </font>
-                           <ripplerFill>
-                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                                 <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color red="1.0" />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
-                                       <color>
-                                          <Color red="1.0" green="1.0" blue="1.0" />
-                                       </color>
-                                    </Stop>
-                                 </stops>
-                              </RadialGradient>
-                           </ripplerFill>
                         </JFXButton>
                      </children>
                   </HBox>

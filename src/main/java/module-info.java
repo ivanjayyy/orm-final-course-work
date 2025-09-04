@@ -7,10 +7,11 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     requires java.naming;
     requires java.sql;
     requires javafx.graphics;
+    requires com.jfoenix;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.config to jakarta.persistence;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity to org.hibernate.orm.core;
-    opens com.ijse.gdse73.elitedrivingschoolmanagementsystem to javafx.fxml;
+    opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller to javafx.fxml;
 
     exports com.ijse.gdse73.elitedrivingschoolmanagementsystem;
 }
