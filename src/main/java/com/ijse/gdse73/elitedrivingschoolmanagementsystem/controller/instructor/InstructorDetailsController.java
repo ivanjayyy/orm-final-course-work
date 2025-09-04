@@ -1,13 +1,16 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class InstructorDetailsController {
+public class InstructorDetailsController implements Initializable {
     public AnchorPane ancInstructorDetails;
 
     public void btnViewOnAction(MouseEvent mouseEvent) {
@@ -23,5 +26,10 @@ public class InstructorDetailsController {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }
