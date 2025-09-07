@@ -33,6 +33,7 @@ public class LoginPageController implements Initializable {
     public ImageView imgEye;
     public TextField visiblePassword;
 
+    public static Boolean isAdmin = false;
     private boolean isPasswordVisible = false;
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
@@ -54,6 +55,8 @@ public class LoginPageController implements Initializable {
                 String hashedPassword = checkUser.getPassword();
 
                 if (BCrypt.checkpw(password, hashedPassword)) {
+                    isAdmin = checkUser.isAdmin();
+
                     Stage currentstage = (Stage) btnLogin.getScene().getWindow();
                     currentstage.close();
 

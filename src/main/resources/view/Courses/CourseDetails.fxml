@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,11 +18,11 @@
          <children>
             <VBox alignment="CENTER" prefHeight="580.0" prefWidth="1630.0">
                <children>
-                  <TableView prefHeight="503.0" prefWidth="1530.0">
+                  <TableView fx:id="tblCourses" onMouseClicked="#onClickTable" prefHeight="503.0" prefWidth="1530.0" style="-fx-background-color: white; -fx-font-size: 25px;">
                     <columns>
-                      <TableColumn prefWidth="242.0" text="Course ID" />
-                      <TableColumn prefWidth="984.0" text="Course Name" />
-                        <TableColumn prefWidth="303.0" text="Duration (Weeks)" />
+                      <TableColumn fx:id="colCourseId" prefWidth="242.0" text="Course ID" />
+                      <TableColumn fx:id="colCourseName" prefWidth="984.0" text="Course Name" />
+                        <TableColumn fx:id="colDuration" prefWidth="303.0" text="Duration (Weeks)" />
                     </columns>
                   </TableView>
                </children>
@@ -33,7 +34,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="109.0" prefWidth="157.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                            <children>
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="ADD">
                                  <font>
@@ -46,6 +47,9 @@
                                  </image>
                               </ImageView>
                            </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </HBox>
                      </children>
                   </VBox>
@@ -64,6 +68,9 @@
                                  </image>
                               </ImageView>
                            </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                         </HBox>
                      </children>
                   </VBox>
