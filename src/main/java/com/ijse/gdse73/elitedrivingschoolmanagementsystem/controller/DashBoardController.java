@@ -34,6 +34,7 @@ public class DashBoardController implements Initializable {
     }
 
     public void btnUsersOnAction(MouseEvent mouseEvent) {
+        navigateTo("/view/Users/UsersPage.fxml");
     }
 
     public void btnStudentsOnAction(MouseEvent mouseEvent) {
