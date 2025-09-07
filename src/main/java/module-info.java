@@ -8,6 +8,8 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     requires java.sql;
     requires javafx.graphics;
     requires com.jfoenix;
+    requires java.desktop;
+    requires jbcrypt;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.config to jakarta.persistence;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity to org.hibernate.orm.core;

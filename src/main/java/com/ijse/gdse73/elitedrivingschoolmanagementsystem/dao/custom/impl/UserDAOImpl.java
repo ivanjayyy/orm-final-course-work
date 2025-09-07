@@ -79,14 +79,17 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public ArrayList<User> search(String id) {
+    public ArrayList<User> search(String text) {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         ArrayList<User> userList;
+        String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM User WHERE id = :userId", User.class);
-            query.setParameter("userId", id);
+            Query query = session.createQuery("FROM User WHERE id LIKE :userId OR username LIKE :username OR email LIKE :email", User.class);
+            query.setParameter("userId", searchText);
+            query.setParameter("username", searchText);
+            query.setParameter("email", searchText);
 
             userList = (ArrayList<User>) query.getResultList();
             transaction.commit();

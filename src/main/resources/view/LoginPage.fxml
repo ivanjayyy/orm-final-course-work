@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -58,7 +60,7 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
-                        <TextField alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                        <TextField fx:id="inputUsername" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -72,14 +74,31 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="20.0" />
+                              <Insets left="46.0" right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <PasswordField alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="password" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0; -fx-border-color: black;">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </PasswordField>
+                        <HBox alignment="CENTER" prefHeight="109.0" prefWidth="374.0">
+                           <children>
+                              <TextField fx:id="visiblePassword" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0; -fx-managed: false;" visible="false">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </TextField>
+                              <PasswordField fx:id="inputPassword" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="password" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0; -fx-border-color: black;">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </PasswordField>
+                              <ImageView fx:id="imgEye" fitHeight="45.0" fitWidth="30.0" onMouseClicked="#btnShowPasswordOnAction" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Users/ivanj/Downloads/icons8-eye-96.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="16.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="500.0" prefWidth="680.0">
@@ -91,6 +110,7 @@
                         </JFXButton>
                      </children>
                   </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />
