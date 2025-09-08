@@ -132,14 +132,15 @@ public class CourseDAOImpl implements CourseDAO {
         String nextId;
 
         try {
-            Query query = session.createQuery("SELECT MAX(id) FROM Course", String.class);
-            String maxId = String.valueOf(query);
+            Query query = session.createQuery("SELECT id FROM Course ORDER BY id DESC", String.class);
+            query.setMaxResults(1);
+            String lastId = query.uniqueResult().toString();
 
-            if (maxId != null) {
-                String numericPart = maxId.replaceAll("[^0-9]", "");
-                int number = Integer.parseInt(numericPart);
-                number++;
-                nextId = "C" + String.format("%04d", number);
+            if (lastId != null) {
+                String lastIdNumberString = lastId.substring(1);
+                int lastIdNumber = Integer.parseInt(lastIdNumberString);
+                int nextIdNumber = lastIdNumber + 1;
+                return String.format("C%03d", nextIdNumber);
 
             } else {
                 nextId = "C1001";

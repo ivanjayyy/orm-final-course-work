@@ -132,14 +132,15 @@ public class LessonDAOImpl implements LessonDAO {
         String nextId;
 
         try {
-            Query query = session.createQuery("SELECT MAX(id) FROM Lesson ", String.class);
-            String maxId = String.valueOf(query);
+            Query query = session.createQuery("SELECT id FROM Lesson ORDER BY id DESC", String.class);
+            query.setMaxResults(1);
+            String lastId = query.uniqueResult().toString();
 
-            if (maxId != null) {
-                String numericPart = maxId.replaceAll("[^0-9]", "");
-                int number = Integer.parseInt(numericPart);
-                number++;
-                nextId = "L" + String.format("%04d", number);
+            if (lastId != null) {
+                String lastIdNumberString = lastId.substring(1);
+                int lastIdNumber = Integer.parseInt(lastIdNumberString);
+                int nextIdNumber = lastIdNumber + 1;
+                return String.format("L%03d", nextIdNumber);
 
             } else {
                 nextId = "L1001";

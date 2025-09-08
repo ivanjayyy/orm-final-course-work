@@ -132,14 +132,15 @@ public class InstructorDAOImpl implements InstructorDAO {
         String nextId;
 
         try {
-            Query query = session.createQuery("SELECT MAX(id) FROM Instructor", String.class);
-            String maxId = String.valueOf(query);
+            Query query = session.createQuery("SELECT id FROM Instructor ORDER BY id DESC", String.class);
+            query.setMaxResults(1);
+            String lastId = query.uniqueResult().toString();
 
-            if (maxId != null) {
-                String numericPart = maxId.replaceAll("[^0-9]", "");
-                int number = Integer.parseInt(numericPart);
-                number++;
-                nextId = "I" + String.format("%04d", number);
+            if (lastId != null) {
+                String lastIdNumberString = lastId.substring(1);
+                int lastIdNumber = Integer.parseInt(lastIdNumberString);
+                int nextIdNumber = lastIdNumber + 1;
+                return String.format("I%03d", nextIdNumber);
 
             } else {
                 nextId = "I1001";

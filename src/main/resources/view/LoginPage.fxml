@@ -60,7 +60,7 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="inputUsername" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                        <TextField fx:id="inputUsername" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" text="a">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -84,7 +84,7 @@
                                     <Font size="25.0" />
                                  </font>
                               </TextField>
-                              <PasswordField fx:id="inputPassword" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="password" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0; -fx-border-color: black;">
+                              <PasswordField fx:id="inputPassword" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="password" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0; -fx-border-color: black;" text="a">
                                  <font>
                                     <Font size="25.0" />
                                  </font>

@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,15 @@ public class CourseDetailsController implements Initializable {
     public TableColumn<CoursesTM, String> colCourseName;
     public TableColumn<CoursesTM, Integer> colDuration;
 
+    public static String selectedCourseId;
+    public static boolean addCourse;
+
     public void btnViewOnAction(MouseEvent actionEvent) {
+        if (selectedCourseId == null) {
+            new Alert(Alert.AlertType.ERROR, "Please Select A Course").show();
+            return;
+        }
+
         try {
             ancCourseDetails.getChildren().clear();
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Courses/CourseView.fxml"));
@@ -47,7 +56,13 @@ public class CourseDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        resetPage();
+    }
+
+    public void resetPage(){
         loadTableData();
+        selectedCourseId = null;
+        addCourse = false;
     }
 
     private void loadTableData() {
@@ -71,9 +86,34 @@ public class CourseDetailsController implements Initializable {
     }
 
     public void btnAddOnAction(MouseEvent mouseEvent) {
+        if (selectedCourseId != null) {
+            new Alert(Alert.AlertType.ERROR, "Please Unselect The Course").show();
+            return;
+        }
+
+        try {
+            addCourse = true;
+
+            ancCourseDetails.getChildren().clear();
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Courses/CourseView.fxml"));
+
+            anchorPane.prefWidthProperty().bind(ancCourseDetails.widthProperty());
+            anchorPane.prefHeightProperty().bind(ancCourseDetails.heightProperty());
+
+            ancCourseDetails.getChildren().add(anchorPane);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
+            e.printStackTrace();
+        }
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
+        selectedCourseId = tblCourses.getSelectionModel().getSelectedItem().getCourseId();
+    }
+
+    public void btnResetOnAction(MouseEvent mouseEvent) {
+        resetPage();
+        new Alert(Alert.AlertType.INFORMATION, "Page Reset").show();
     }
 
 }

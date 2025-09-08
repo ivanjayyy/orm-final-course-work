@@ -48,4 +48,11 @@ public class DashBoardController implements Initializable {
     public void btnCoursesOnAction(MouseEvent mouseEvent) {
         navigateTo("/view/Courses/CoursesPage.fxml");
     }
+
+    public void btnQuitOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void btnEditAccountOnAction(MouseEvent mouseEvent) {
+
+    }
 }
