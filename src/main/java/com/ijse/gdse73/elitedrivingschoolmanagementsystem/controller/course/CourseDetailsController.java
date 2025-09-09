@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -101,6 +100,7 @@ public class CourseDetailsController implements Initializable {
             anchorPane.prefHeightProperty().bind(ancCourseDetails.heightProperty());
 
             ancCourseDetails.getChildren().add(anchorPane);
+
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
@@ -108,7 +108,11 @@ public class CourseDetailsController implements Initializable {
     }
 
     public void onClickTable(MouseEvent mouseEvent) {
-        selectedCourseId = tblCourses.getSelectionModel().getSelectedItem().getCourseId();
+        CoursesTM selectedCourse = tblCourses.getSelectionModel().getSelectedItem();
+
+        if (selectedCourse != null) {
+            selectedCourseId = selectedCourse.getCourseId();
+        }
     }
 
     public void btnResetOnAction(MouseEvent mouseEvent) {

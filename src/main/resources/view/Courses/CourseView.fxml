@@ -17,7 +17,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="680.0" prefWidth="1139.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="680.0" prefWidth="464.0" spacing="50.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="680.0" prefWidth="464.0" spacing="60.0">
                      <padding>
                         <Insets left="100.0" />
                      </padding>

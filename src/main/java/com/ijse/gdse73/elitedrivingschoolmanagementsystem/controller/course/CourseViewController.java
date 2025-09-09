@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CourseViewController implements Initializable {
@@ -84,6 +83,8 @@ public class CourseViewController implements Initializable {
 
             if(isAdded){
                 new Alert(Alert.AlertType.INFORMATION,"Course Added Successfully").show();
+                goToCourseDetailsPage();
+
             }else{
                 new Alert(Alert.AlertType.ERROR,"Course Add Failed").show();
             }
