@@ -35,6 +35,7 @@ public class LoginPageController implements Initializable {
 
     public static Boolean isAdmin = false;
     private boolean isPasswordVisible = false;
+    public static String currentUser;
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         String username = inputUsername.getText();
@@ -56,6 +57,7 @@ public class LoginPageController implements Initializable {
 
                 if (BCrypt.checkpw(password, hashedPassword)) {
                     isAdmin = checkUser.isAdmin();
+                    currentUser = checkUser.getUserId();
 
                     Stage currentstage = (Stage) btnLogin.getScene().getWindow();
                     currentstage.close();

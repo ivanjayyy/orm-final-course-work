@@ -35,9 +35,6 @@ public class UserViewController implements Initializable {
     public Label lblDelete;
     public ImageView imgDelete;
 
-    public String selectedUsername;
-    public String selectedPassword;
-
     public void goToUserDetailsPage(){
         try {
             ancUserView.getChildren().clear();
@@ -75,17 +72,15 @@ public class UserViewController implements Initializable {
         }
 
         if(UserDetailsController.selectedUserId!=null){
-            UserDTO selectedUser = userBO.searchUser(UserDetailsController.selectedUserId).getFirst();
+            UserDTO selectedUser = getSelectedUser();
 
             inputUserId.setText(selectedUser.getUserId());
             inputFullName.setText(selectedUser.getName());
 
             inputUserName.setText("Access Denied");
-            selectedUsername = selectedUser.getUsername();
             inputUserName.setEditable(false);
 
             inputPassword.setText("Access Denied");
-            selectedPassword = selectedUser.getPassword();
             inputPassword.setEditable(false);
 
             inputEmail.setText(selectedUser.getEmail());
@@ -97,6 +92,10 @@ public class UserViewController implements Initializable {
                 radioNo.setSelected(true);
             }
         }
+    }
+
+    public UserDTO getSelectedUser(){
+        return userBO.searchUser(UserDetailsController.selectedUserId).getFirst();
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
@@ -113,7 +112,11 @@ public class UserViewController implements Initializable {
             }
 
         } else {
-            UserDTO updatedUser = new UserDTO(inputUserId.getText(),inputFullName.getText(),selectedUsername,selectedPassword,inputEmail.getText(),radioYes.isSelected());
+            UserDTO updatedUser = getSelectedUser();
+            updatedUser.setName(inputFullName.getText());
+            updatedUser.setEmail(inputEmail.getText());
+            updatedUser.setAdmin(radioYes.isSelected());
+
             boolean isUpdated = userBO.updateUser(updatedUser);
 
             if(isUpdated){
