@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -24,6 +28,30 @@
                         <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
                         <VBox layoutX="670.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
                         <VBox layoutX="825.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
+                  <VBox alignment="CENTER" prefHeight="175.0" prefWidth="194.0">
+                     <children>
+                        <HBox alignment="CENTER" onMouseClicked="#btnPaymentsOnAction" prefHeight="72.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="PAYMENTS">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-money.gif" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </HBox>
+                     </children>
+                  </VBox>
                     </children>
                 </HBox>
                 <AnchorPane fx:id="ancStudents" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: black;" />

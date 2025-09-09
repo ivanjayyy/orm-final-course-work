@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,11 +18,11 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="580.0" prefWidth="1630.0">
                     <children>
-                        <TableView prefHeight="503.0" prefWidth="1530.0">
+                        <TableView fx:id="tblStudents" onMouseClicked="#onClickTable" prefHeight="503.0" prefWidth="1530.0" style="-fx-background-color: white; -fx-font-size: 25;">
                             <columns>
-                                <TableColumn prefWidth="242.0" text="Course ID" />
-                                <TableColumn prefWidth="984.0" text="Course Name" />
-                                <TableColumn prefWidth="303.0" text="Duration (Weeks)" />
+                                <TableColumn fx:id="colStudentId" prefWidth="242.0" text="Student ID" />
+                                <TableColumn fx:id="colStudentName" prefWidth="984.0" text="Student Name" />
+                                <TableColumn fx:id="colStudentIsRegistered" prefWidth="303.0" text="Is Registered" />
                             </columns>
                         </TableView>
                     </children>
@@ -31,9 +32,25 @@
                 </VBox>
                 <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="1580.0" spacing="50.0">
                     <children>
+                  <VBox alignment="TOP_CENTER" layoutX="1226.0" layoutY="10.0" prefHeight="90.0" prefWidth="59.0">
+                     <children>
+                        <HBox alignment="CENTER" onMouseClicked="#btnResetOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                           <children>
+                              <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-refresh.gif" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </HBox>
+                     </children>
+                  </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="109.0" prefWidth="157.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                                <HBox alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="ADD">
                                             <font>
@@ -46,6 +63,9 @@
                                             </image>
                                         </ImageView>
                                     </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                                 </HBox>
                             </children>
                         </VBox>
@@ -64,6 +84,9 @@
                                             </image>
                                         </ImageView>
                                     </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
                                 </HBox>
                             </children>
                         </VBox>

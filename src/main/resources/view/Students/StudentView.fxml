@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ancStudentView" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentViewController">
@@ -16,70 +19,143 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="680.0" prefWidth="1139.0">
                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="680.0" prefWidth="464.0" spacing="50.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="680.0" prefWidth="464.0" spacing="25.0">
                             <padding>
                                 <Insets left="100.0" />
                             </padding>
                             <children>
-                                <Label text="Course ID">
+                                <Label text="Student ID">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="110.0" layoutY="328.0" text="Course Name">
+                                <Label layoutX="110.0" layoutY="350.0" text="Gender">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="110.0" layoutY="350.0" text="Description">
+                                <Label layoutX="110.0" layoutY="328.0" text="Student Name">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="110.0" layoutY="373.0" text="Duration (Weeks)">
+                                <Label layoutX="110.0" layoutY="373.0" text="Address">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="110.0" layoutY="395.0" text="Course Fee (Rs.)">
+                                <Label layoutX="110.0" layoutY="395.0" text="NIC">
                                     <font>
                                         <Font name="System Bold" size="30.0" />
                                     </font>
                                 </Label>
+                        <Label layoutX="110.0" layoutY="518.0" text="Contact">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="110.0" layoutY="565.0" text="Email">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="110.0" layoutY="493.0" text="Is Registered">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="110.0" layoutY="520.0" text="Register Date">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
                             </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="680.0" prefWidth="734.0" spacing="50.0">
+                        <VBox alignment="CENTER" prefHeight="680.0" prefWidth="734.0" spacing="20.0">
                             <children>
-                                <TextField alignment="CENTER" editable="false" prefHeight="53.0" prefWidth="239.0" promptText="course id" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                                <TextField fx:id="inputStudentId" alignment="CENTER" editable="false" prefHeight="53.0" prefWidth="239.0" promptText="student id" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                                     <font>
                                         <Font size="25.0" />
                                     </font>
                                 </TextField>
-                                <TextField alignment="CENTER" layoutX="10.0" layoutY="324.0" prefHeight="53.0" prefWidth="239.0" promptText="course name" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="540.0" prefHeight="40.0" prefWidth="693.0" spacing="200.0">
+                           <children>
+                              <JFXRadioButton fx:id="radioMale" text="MALE">
+                                 <font>
+                                    <Font name="System Italic" size="25.0" />
+                                 </font>
+                                 <selectedColor>
+                                    <Color red="1.0" />
+                                 </selectedColor>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="radioFemale" layoutX="322.0" layoutY="19.0" text="FEMALE">
+                                 <font>
+                                    <Font name="System Italic" size="25.0" />
+                                 </font>
+                                 <selectedColor>
+                                    <Color red="1.0" />
+                                 </selectedColor>
+                              </JFXRadioButton>
+                           </children>
+                        </HBox>
+                                <TextField fx:id="inputStudentName" alignment="CENTER" layoutX="10.0" layoutY="350.0" prefHeight="53.0" prefWidth="239.0" promptText="student name" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                                     <font>
                                         <Font size="25.0" />
                                     </font>
                                 </TextField>
-                                <TextField alignment="CENTER" layoutX="10.0" layoutY="350.0" prefHeight="53.0" prefWidth="239.0" promptText="description" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                                <TextField fx:id="inputAddress" alignment="CENTER" layoutX="10.0" layoutY="377.0" prefHeight="53.0" prefWidth="239.0" promptText="address" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                                     <font>
                                         <Font size="25.0" />
                                     </font>
                                 </TextField>
-                                <TextField alignment="CENTER" layoutX="10.0" layoutY="377.0" prefHeight="53.0" prefWidth="239.0" promptText="duration" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                                <TextField fx:id="inputNic" alignment="CENTER" layoutX="10.0" layoutY="403.0" prefHeight="53.0" prefWidth="239.0" promptText="nic" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                                     <font>
                                         <Font size="25.0" />
                                     </font>
                                 </TextField>
-                                <TextField alignment="CENTER" layoutX="10.0" layoutY="403.0" prefHeight="53.0" prefWidth="239.0" promptText="course fee" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
-                                    <font>
-                                        <Font size="25.0" />
-                                    </font>
-                                </TextField>
+                        <TextField fx:id="inputContact" alignment="CENTER" layoutX="10.0" layoutY="470.0" prefHeight="53.0" prefWidth="239.0" promptText="contact" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="inputEmail" alignment="CENTER" layoutX="10.0" layoutY="506.0" prefHeight="53.0" prefWidth="239.0" promptText="email" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </TextField>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="693.0" spacing="200.0">
+                           <children>
+                              <JFXRadioButton fx:id="radioYes" text="YES">
+                                 <font>
+                                    <Font name="System Italic" size="25.0" />
+                                 </font>
+                                 <selectedColor>
+                                    <Color red="1.0" />
+                                 </selectedColor>
+                              </JFXRadioButton>
+                              <JFXRadioButton fx:id="radioNo" layoutX="322.0" layoutY="19.0" text="NO">
+                                 <font>
+                                    <Font name="System Italic" size="25.0" />
+                                 </font>
+                                 <selectedColor>
+                                    <Color red="1.0" />
+                                 </selectedColor>
+                              </JFXRadioButton>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="inputRegisterDate" alignment="CENTER" layoutX="10.0" layoutY="579.0" prefHeight="53.0" prefWidth="239.0" promptText="register date" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-                <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="40.0">
+                <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="25.0">
                     <children>
                         <HBox alignment="CENTER" layoutX="110.0" layoutY="557.0" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
@@ -92,6 +168,9 @@
                             <VBox.margin>
                                 <Insets left="400.0" right="40.0" />
                             </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                         </HBox>
                         <VBox prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                             <VBox.margin>
@@ -103,31 +182,54 @@
                                 <Insets left="70.0" right="70.0" />
                             </VBox.margin>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                  <HBox alignment="CENTER" layoutX="160.0" layoutY="592.0" onMouseClicked="#btnSeeCoursesOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="COURSES">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-versions-100.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="150.0" right="150.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </HBox>
+                        <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
-                                <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">
+                                <Label fx:id="lblUpdate" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="imgUpdate" fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
+                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-pencil.gif" />
                                     </image>
                                 </ImageView>
                             </children>
                             <VBox.margin>
                                 <Insets left="150.0" right="150.0" />
                             </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="110.0" layoutY="577.0" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox alignment="CENTER" layoutX="110.0" layoutY="577.0" onMouseClicked="#btnDeleteOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
-                                <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="DELETE">
+                                <Label fx:id="lblDelete" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="DELETE">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="imgDelete" fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-delete.gif" />
                                     </image>
@@ -136,6 +238,9 @@
                             <VBox.margin>
                                 <Insets left="150.0" right="150.0" />
                             </VBox.margin>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                         </HBox>
                     </children>
                 </VBox>

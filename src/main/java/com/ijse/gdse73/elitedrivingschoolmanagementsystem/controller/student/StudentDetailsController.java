@@ -3,6 +3,8 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -12,6 +14,10 @@ import java.util.ResourceBundle;
 
 public class StudentDetailsController implements Initializable {
     public AnchorPane ancStudentDetails;
+    public TableView tblStudents;
+    public TableColumn colStudentId;
+    public TableColumn colStudentName;
+    public TableColumn colStudentIsRegistered;
 
     public void btnViewOnAction(MouseEvent mouseEvent) {
         try {
@@ -31,5 +37,14 @@ public class StudentDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
+    }
+
+    public void btnResetOnAction(MouseEvent mouseEvent) {
+    }
+
+    public void btnAddOnAction(MouseEvent mouseEvent) {
     }
 }

@@ -3,6 +3,7 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -26,5 +27,9 @@ public class StudentsPageController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    public void btnPaymentsOnAction(MouseEvent mouseEvent) {
+
     }
 }

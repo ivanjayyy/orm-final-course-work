@@ -96,7 +96,7 @@ public class InstructorViewController implements Initializable {
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
-        if(inputAssignedCourse.getValue().equals("select course")){
+        if(inputAssignedCourse.getValue()==null){
             new Alert(Alert.AlertType.ERROR, "Select A Course").show();
             return;
         }
