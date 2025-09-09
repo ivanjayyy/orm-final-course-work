@@ -79,14 +79,16 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
-    public ArrayList<Course> search(String id) {
+    public ArrayList<Course> search(String text) {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         ArrayList<Course> courseList;
+        String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Course WHERE id = :courseId", Course.class);
-            query.setParameter("courseId", id);
+            Query query = session.createQuery("FROM Course WHERE id LIKE :courseId OR name LIKE :courseName", Course.class);
+            query.setParameter("courseId", searchText);
+            query.setParameter("courseName", text);
 
             courseList = (ArrayList<Course>) query.getResultList();
             transaction.commit();
