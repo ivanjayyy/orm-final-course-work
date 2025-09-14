@@ -51,7 +51,7 @@ public class Student {
 //    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
 //    private List<Lesson> lesson;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "student_detail_table", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
     private List<Course> course;
 

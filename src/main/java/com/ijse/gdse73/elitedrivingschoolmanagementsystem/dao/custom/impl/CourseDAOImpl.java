@@ -88,7 +88,7 @@ public class CourseDAOImpl implements CourseDAO {
         try {
             Query query = session.createQuery("FROM Course WHERE id LIKE :courseId OR name LIKE :courseName", Course.class);
             query.setParameter("courseId", searchText);
-            query.setParameter("courseName", text);
+            query.setParameter("courseName", searchText);
 
             courseList = (ArrayList<Course>) query.getResultList();
             transaction.commit();

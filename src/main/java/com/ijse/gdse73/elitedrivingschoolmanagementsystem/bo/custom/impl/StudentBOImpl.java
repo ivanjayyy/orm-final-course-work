@@ -21,7 +21,7 @@ public class StudentBOImpl implements StudentBO {
     public boolean saveStudent(StudentDTO studentDTO) {
         List<Course> courses = new ArrayList<>();
 
-        for (String courseId : studentDTO.getCourseids()) {
+        for (String courseId : studentDTO.getCourseIds()) {
             Course course = courseDAO.search(courseId).getFirst();
             courses.add(course);
         }
@@ -33,7 +33,7 @@ public class StudentBOImpl implements StudentBO {
     public boolean updateStudent(StudentDTO studentDTO) {
         List<Course> courses = new ArrayList<>();
 
-        for (String courseId : studentDTO.getCourseids()) {
+        for (String courseId : studentDTO.getCourseIds()) {
             Course course = courseDAO.search(courseId).getFirst();
             courses.add(course);
         }
@@ -51,14 +51,15 @@ public class StudentBOImpl implements StudentBO {
         ArrayList<Student> students = studentDAO.search(id);
         ArrayList<StudentDTO> studentDTOS = new ArrayList<>();
 
-        ArrayList<String> courseIds = new ArrayList<>();
         for (Student student : students) {
-            courseIds.add(student.getId());
-        }
+            ArrayList<String> courseIds = new ArrayList<>();
 
-        for (Student student : students) {
+            for (Course course : student.getCourse()) {
+                courseIds.add(course.getId());
+            }
             studentDTOS.add(new StudentDTO(student.getId(),student.getGender(),student.getName(),student.getAddress(),student.getNic(),student.getContact(),student.getEmail(),student.isRegistered(),student.getDate(),courseIds));
         }
+
         return studentDTOS;
     }
 
@@ -67,14 +68,15 @@ public class StudentBOImpl implements StudentBO {
         ArrayList<Student> students = studentDAO.getAll();
         ArrayList<StudentDTO> studentDTOS = new ArrayList<>();
 
-        ArrayList<String> courseIds = new ArrayList<>();
         for (Student student : students) {
-            courseIds.add(student.getId());
-        }
+            ArrayList<String> courseIds = new ArrayList<>();
 
-        for (Student student : students) {
+            for (Course course : student.getCourse()) {
+                courseIds.add(course.getId());
+            }
             studentDTOS.add(new StudentDTO(student.getId(),student.getGender(),student.getName(),student.getAddress(),student.getNic(),student.getContact(),student.getEmail(),student.isRegistered(),student.getDate(),courseIds));
         }
+
         return studentDTOS;
     }
 

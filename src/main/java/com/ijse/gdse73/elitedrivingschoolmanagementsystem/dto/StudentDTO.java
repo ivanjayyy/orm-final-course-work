@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,6 +22,6 @@ public class StudentDTO {
     private String email;
     private boolean isRegistered;
     private String date;
-    private List<String> courseids;
+    private ArrayList<String> courseIds;
 
 }

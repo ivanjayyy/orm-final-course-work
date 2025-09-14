@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="822.0" prefWidth="1165.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.AppliedCoursesController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="134.0" layoutY="122.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="174.0" prefWidth="1155.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="148.0" prefWidth="524.0">
+                     <children>
+                        <JFXComboBox fx:id="comboCourses" prefHeight="71.0" prefWidth="461.0" promptText="select courses" style="-fx-font-size: 20;" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="148.0" prefWidth="147.0">
+                     <children>
+                        <HBox alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="ADD">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="561.0" prefWidth="1155.0">
+               <children>
+                  <TableView fx:id="tblAppliedCourses" prefHeight="507.0" prefWidth="1176.0" style="-fx-background-color: white; -fx-font-size: 25;">
+                    <columns>
+                      <TableColumn fx:id="colCourseId" prefWidth="202.0" text="Course ID" />
+                      <TableColumn fx:id="colCourseName" prefWidth="683.0" text="Course Name" />
+                        <TableColumn fx:id="colBtnRemove" prefWidth="269.0" />
+                    </columns>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </TableView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="163.0" prefWidth="1155.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="149.0" prefWidth="147.0">
+                     <children>
+                        <HBox alignment="CENTER" onMouseClicked="#btnSaveOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="SAVE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-pencil.gif" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

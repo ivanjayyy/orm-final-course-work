@@ -3,8 +3,10 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,7 @@ import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class AppInitializer extends Application {
 
@@ -40,6 +43,13 @@ public class AppInitializer extends Application {
         CourseDTO course3 = new CourseDTO("C1003","Maths","Nothing Special 3",12,fee3);
         courseBO.saveCourse(course3);
 
+        StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
+        ArrayList<String> courseIds = new ArrayList<>();
+        courseIds.add("C1001");
+        courseIds.add("C1002");
+        courseIds.add("C1003");
+        StudentDTO studentDTO = new StudentDTO("S1001","Male","Sadeepa Lakshan","Panadura","200304012446","0712349970","sadeepa2003@gmail.com",true,"2025-09-10",courseIds);
+        studentBO.saveStudent(studentDTO);
 
 
 

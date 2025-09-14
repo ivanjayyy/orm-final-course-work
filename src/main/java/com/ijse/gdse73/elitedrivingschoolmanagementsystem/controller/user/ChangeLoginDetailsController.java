@@ -5,6 +5,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -12,9 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ChangeLoginDetailsController {
+public class ChangeLoginDetailsController implements Initializable {
     public TextField inputUsername;
     public TextField inputPassword;
 
@@ -39,5 +42,10 @@ public class ChangeLoginDetailsController {
                 new Alert(Alert.AlertType.ERROR, "Login Details Update Failed").show();
             }
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }
