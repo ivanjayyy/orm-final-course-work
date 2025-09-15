@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -11,7 +13,8 @@ import lombok.NoArgsConstructor;
 public class PaymentDTO {
 
     private String paymentId;
-    private boolean status;
+    private String date;
+    private BigDecimal paidAmount;
     private String studentId;
     private String courseId;
 

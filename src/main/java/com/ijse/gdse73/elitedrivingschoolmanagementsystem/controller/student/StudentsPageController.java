@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class StudentsPageController implements Initializable {
     public AnchorPane ancStudents;
+    public AnchorPane ancStudentsPage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,6 +31,23 @@ public class StudentsPageController implements Initializable {
     }
 
     public void btnPaymentsOnAction(MouseEvent mouseEvent) {
+        if(StudentDetailsController.selectedStudentId==null){
+            new Alert(Alert.AlertType.ERROR, "Please Select A Student").show();
+            return;
+        }
 
+        try {
+            ancStudentsPage.getChildren().clear();
+
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Payments/PaymentsPage.fxml"));
+
+            anchorPane.prefWidthProperty().bind(ancStudentsPage.widthProperty());
+            anchorPane.prefHeightProperty().bind(ancStudentsPage.heightProperty());
+
+            ancStudentsPage.getChildren().add(anchorPane);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
+            e.printStackTrace();
+        }
     }
 }

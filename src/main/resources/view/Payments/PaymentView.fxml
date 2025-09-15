@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ancPaymentView" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.payment.PaymentViewController">
+    <children>
+        <HBox alignment="CENTER" layoutX="80.0" layoutY="160.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0 0 20px 20px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="680.0" prefWidth="1139.0">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="680.0" prefWidth="464.0" spacing="87.0">
+                            <padding>
+                                <Insets left="100.0" top="20.0" />
+                            </padding>
+                            <children>
+                                <Label text="Payment ID">
+                                    <font>
+                                        <Font name="System Bold" size="30.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="110.0" layoutY="328.0" text="Course Name">
+                                    <font>
+                                        <Font name="System Bold" size="30.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="110.0" layoutY="373.0" text="Payment Date">
+                                    <font>
+                                        <Font name="System Bold" size="30.0" />
+                                    </font>
+                                </Label>
+                        <Label layoutX="110.0" layoutY="473.0" text="Paid Amount">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="680.0" prefWidth="734.0" spacing="80.0">
+                            <children>
+                                <TextField fx:id="inputPaymentId" alignment="CENTER" editable="false" prefHeight="53.0" prefWidth="239.0" promptText="payment id" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </TextField>
+                                <JFXComboBox fx:id="inputCourseName" focusColor="WHITE" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="781.0" promptText="select course" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" unFocusColor="WHITE" />
+                        <TextField fx:id="inputPaymentDate" alignment="CENTER" layoutX="10.0" layoutY="252.0" prefHeight="53.0" prefWidth="239.0" promptText="payment date" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="inputPaidAmount" alignment="CENTER" layoutX="10.0" layoutY="467.0" prefHeight="53.0" prefWidth="239.0" promptText="paid amount" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="40.0">
+                    <children>
+                        <HBox alignment="CENTER" layoutX="110.0" layoutY="557.0" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                            <children>
+                                <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-back.gif" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="400.0" right="40.0" />
+                            </VBox.margin>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </HBox>
+                        <VBox prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                            <VBox.margin>
+                                <Insets left="70.0" right="70.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <VBox layoutX="110.0" layoutY="359.0" prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                            <VBox.margin>
+                                <Insets left="70.0" right="70.0" />
+                            </VBox.margin>
+                        </VBox>
+                        <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                            <children>
+                                <Label fx:id="lblUpdate" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fx:id="imgUpdate" fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-pencil.gif" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="150.0" right="150.0" />
+                            </VBox.margin>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="110.0" layoutY="577.0" onMouseClicked="#btnDeleteOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                            <children>
+                                <Label fx:id="lblDelete" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="DELETE">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fx:id="imgDelete" fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-delete.gif" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="150.0" right="150.0" />
+                            </VBox.margin>
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

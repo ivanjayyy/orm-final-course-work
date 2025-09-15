@@ -22,6 +22,7 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student to javafx.fxml;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.user to javafx.fxml;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.lesson to javafx.fxml;
+    opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.payment to javafx.fxml;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm to javafx.base;
 }

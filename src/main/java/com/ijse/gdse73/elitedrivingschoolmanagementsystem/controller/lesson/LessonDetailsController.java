@@ -122,7 +122,6 @@ public class LessonDetailsController implements Initializable {
                 lessonsTMS.add(lessonsTM);
             }
         }
-
         tblLessons.setItems(lessonsTMS);
     }
 }

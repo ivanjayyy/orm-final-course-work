@@ -3,6 +3,8 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,7 +20,10 @@ public class Payment {
     private String id;
 
     @Column(nullable = false)
-    private boolean status;
+    private String date;
+
+    @Column(nullable = false)
+    private BigDecimal paidAmount;
 
 
 

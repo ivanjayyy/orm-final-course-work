@@ -24,7 +24,7 @@ public class PaymentBOImpl implements PaymentBO {
         Student student = studentDAO.search(paymentDTO.getStudentId()).getFirst();
         Course course = courseDAO.search(paymentDTO.getCourseId()).getFirst();
 
-        return paymentDAO.save(new Payment(paymentDTO.getPaymentId(),paymentDTO.isStatus(),student,course));
+        return paymentDAO.save(new Payment(paymentDTO.getPaymentId(),paymentDTO.getDate(),paymentDTO.getPaidAmount(),student,course));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PaymentBOImpl implements PaymentBO {
         Student student = studentDAO.search(paymentDTO.getStudentId()).getFirst();
         Course course = courseDAO.search(paymentDTO.getCourseId()).getFirst();
 
-        return paymentDAO.update(new Payment(paymentDTO.getPaymentId(),paymentDTO.isStatus(),student,course));
+        return paymentDAO.update(new Payment(paymentDTO.getPaymentId(),paymentDTO.getDate(),paymentDTO.getPaidAmount(),student,course));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class PaymentBOImpl implements PaymentBO {
         ArrayList<PaymentDTO> paymentDTOS = new ArrayList<>();
 
         for (Payment payment : payments) {
-            paymentDTOS.add(new PaymentDTO(payment.getId(),payment.isStatus(),payment.getStudent().getId(),payment.getCourse().getId()));
+            paymentDTOS.add(new PaymentDTO(payment.getId(),payment.getDate(),payment.getPaidAmount(),payment.getStudent().getId(),payment.getCourse().getId()));
         }
         return paymentDTOS;
     }
@@ -57,7 +57,7 @@ public class PaymentBOImpl implements PaymentBO {
         ArrayList<PaymentDTO> paymentDTOS = new ArrayList<>();
 
         for (Payment payment : payments) {
-            paymentDTOS.add(new PaymentDTO(payment.getId(),payment.isStatus(),payment.getStudent().getId(),payment.getCourse().getId()));
+            paymentDTOS.add(new PaymentDTO(payment.getId(),payment.getDate(),payment.getPaidAmount(),payment.getStudent().getId(),payment.getCourse().getId()));
         }
         return paymentDTOS;
     }
