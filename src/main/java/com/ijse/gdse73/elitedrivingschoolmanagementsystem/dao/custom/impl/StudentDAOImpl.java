@@ -79,14 +79,16 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public ArrayList<Student> search(String id) {
+    public ArrayList<Student> search(String text) {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         ArrayList<Student> studentList;
+        String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Student WHERE id = :studentId", Student.class);
-            query.setParameter("studentId", id);
+            Query query = session.createQuery("FROM Student WHERE id LIKE :studentId OR name LIKE :studentName", Student.class);
+            query.setParameter("studentId", searchText);
+            query.setParameter("studentName", searchText);
 
             studentList = (ArrayList<Student>) query.getResultList();
             transaction.commit();

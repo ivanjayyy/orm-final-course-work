@@ -2,17 +2,17 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 
-public class InstructorsTM {
+public class LessonsTM {
 
-    private String instructorId;
-    private String instructorName;
-    private String assignedCourse;
+    private String lessonId;
+    private String studentName;
+    private String date;
+    private String lessonStatus;
 
 }
