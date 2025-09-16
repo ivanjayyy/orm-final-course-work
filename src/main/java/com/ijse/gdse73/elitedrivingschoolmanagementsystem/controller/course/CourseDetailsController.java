@@ -3,6 +3,7 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.CoursesTM;
 import javafx.collections.FXCollections;
@@ -34,6 +35,11 @@ public class CourseDetailsController implements Initializable {
     public static boolean addCourse;
 
     public void btnViewOnAction(MouseEvent actionEvent) {
+        if(!LoginPageController.isAdmin){
+            new Alert(Alert.AlertType.ERROR, "You Are Not Authorized To View This Page").show();
+            return;
+        }
+
         if (selectedCourseId == null) {
             new Alert(Alert.AlertType.ERROR, "Please Select A Course").show();
             return;
@@ -85,6 +91,11 @@ public class CourseDetailsController implements Initializable {
     }
 
     public void btnAddOnAction(MouseEvent mouseEvent) {
+        if(!LoginPageController.isAdmin){
+            new Alert(Alert.AlertType.ERROR, "You Are Not Authorized To View This Page").show();
+            return;
+        }
+
         if (selectedCourseId != null) {
             new Alert(Alert.AlertType.ERROR, "Please Unselect The Course").show();
             return;

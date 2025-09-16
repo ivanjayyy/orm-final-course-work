@@ -35,6 +35,10 @@ public class UserViewController implements Initializable {
     public Label lblDelete;
     public ImageView imgDelete;
 
+    private final String userFullNameRegex = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";
+    private final String usernameRegex = "^[a-zA-Z0-9_-]+$";
+    private final String userEmailRegex = "^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]{1,255}\\.[a-zA-Z]{2,}$";
+
     public void goToUserDetailsPage(){
         try {
             ancUserView.getChildren().clear();
@@ -99,6 +103,39 @@ public class UserViewController implements Initializable {
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
+        int wrongRegex = 0;
+
+        if(inputUserId.getText().equals("") || inputFullName.getText().equals("") || inputUserName.getText().equals("") || inputPassword.getText().equals("") || inputEmail.getText().equals("")){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields").show();
+            return;
+        }
+
+        if(!inputUserName.getText().matches(usernameRegex)){
+            inputUserName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputUserName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputFullName.getText().matches(userFullNameRegex)){
+            inputFullName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputFullName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputEmail.getText().matches(userEmailRegex)){
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(wrongRegex > 0){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields Correctly").show();
+            return;
+        }
+
         if (UserDetailsController.addUser){
             UserDTO user = new UserDTO(inputUserId.getText(),inputFullName.getText(),inputUserName.getText(),inputPassword.getText(),inputEmail.getText(),radioYes.isSelected());
             boolean isAdded = userBO.saveUser(user);

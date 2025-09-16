@@ -2,17 +2,19 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.PaymentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,12 +22,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentViewController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOTypes.PAYMENT);
+    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancStudentView;
     public TextField inputStudentId;
@@ -38,11 +46,17 @@ public class StudentViewController implements Initializable {
     public TextField inputEmail;
     public JFXRadioButton radioYes;
     public JFXRadioButton radioNo;
-    public TextField inputRegisterDate;
+    public DatePicker inputRegisterDate;
     public Label lblUpdate;
     public ImageView imgUpdate;
     public Label lblDelete;
     public ImageView imgDelete;
+
+    private final String studentNameRegex = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";
+    private final String studentAddressRegex = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";
+    private final String studentNicRegex = "^([0-9]{9}[x|X|v|V]|[0-9]{12})$";
+    private final String studentContactRegex = "^0\\d{9}$";
+    private final String studentEmailRegex = "^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]{1,255}\\.[a-zA-Z]{2,}$";
 
     public void goToStudentDetailsPage(){
         try {
@@ -106,7 +120,7 @@ public class StudentViewController implements Initializable {
             inputContact.setText(selectedStudent.getContact());
             inputEmail.setText(selectedStudent.getEmail());
 
-            inputRegisterDate.setText(selectedStudent.getDate());
+            inputRegisterDate.setValue(LocalDate.parse(selectedStudent.getDate()));
             inputRegisterDate.setEditable(false);
 
             boolean isRegistered = selectedStudent.isRegistered();
@@ -136,8 +150,55 @@ public class StudentViewController implements Initializable {
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
-        if(AppliedCoursesController.addCourseIds == null){
+        int wrongRegex = 0;
+
+        if(inputStudentName.getText().equals("") || inputAddress.getText().equals("") || inputNic.getText().equals("") || inputContact.getText().equals("") || inputEmail.getText().equals("") || inputRegisterDate.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields").show();
+            return;
+        }
+
+        if(AppliedCoursesController.addCourseIds.isEmpty()){
             new Alert(Alert.AlertType.ERROR, "Please Select A Course").show();
+            return;
+        }
+
+        if(!inputStudentName.getText().matches(studentNameRegex)){
+            inputStudentName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputStudentName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputAddress.getText().matches(studentAddressRegex)){
+            inputAddress.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputAddress.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputNic.getText().matches(studentNicRegex)){
+            inputNic.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputNic.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputContact.getText().matches(studentContactRegex)){
+            inputContact.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputContact.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputEmail.getText().matches(studentEmailRegex)){
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(wrongRegex > 0){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields Correctly").show();
             return;
         }
 
@@ -151,8 +212,18 @@ public class StudentViewController implements Initializable {
                 gender = "Female";
             }
 
-            StudentDTO student = new StudentDTO(inputStudentId.getText(),gender,inputStudentName.getText(),inputAddress.getText(),inputNic.getText(),inputContact.getText(),inputEmail.getText(),radioYes.isSelected(),inputRegisterDate.getText(),courseIds);
+            StudentDTO student = new StudentDTO(inputStudentId.getText(),gender,inputStudentName.getText(),inputAddress.getText(),inputNic.getText(),inputContact.getText(),inputEmail.getText(),radioYes.isSelected(),inputRegisterDate.getValue().toString(),courseIds);
             boolean isAdded = studentBO.saveStudent(student);
+
+            if(student.isRegistered()){
+                for (String courseId : courseIds) {
+                    BigDecimal courseFee = courseBO.searchCourse(courseId).getFirst().getFee();
+                    int admissionFee = courseFee.intValue() / 10;
+
+                    PaymentDTO paymentDTO = new PaymentDTO(paymentBO.getNextPaymentId(), inputRegisterDate.getValue().toString(), new BigDecimal(admissionFee), student.getStudentId(), courseId);
+                    paymentBO.savePayment(paymentDTO);
+                }
+            }
 
             if(isAdded){
                 new Alert(Alert.AlertType.INFORMATION,"Student Added Successfully").show();
@@ -189,6 +260,13 @@ public class StudentViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
+            List<LessonDTO> lessonDTOS = lessonBO.getAllLessons();
+            for (LessonDTO lessonDTO : lessonDTOS) {
+                if(lessonDTO.getStudentId().equals(inputStudentId.getText())){
+                    lessonBO.deleteLesson(lessonDTO.getLessonId());
+                }
+            }
+
             boolean isDeleted = studentBO.deleteStudent(inputStudentId.getText());
 
             if(isDeleted){
@@ -206,7 +284,7 @@ public class StudentViewController implements Initializable {
             inputEmail.setText("");
             radioMale.setSelected(true);
             radioNo.setSelected(true);
-            inputRegisterDate.setText("");
+            inputRegisterDate.setValue(null);
 
             new Alert(Alert.AlertType.INFORMATION, "Page Reset").show();
         }

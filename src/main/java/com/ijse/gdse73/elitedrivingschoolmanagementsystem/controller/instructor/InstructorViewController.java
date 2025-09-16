@@ -4,9 +4,11 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course.CourseDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +29,7 @@ import java.util.ResourceBundle;
 public class InstructorViewController implements Initializable {
     InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancInstructorView;
     public TextField inputInstructorId;
@@ -38,6 +41,10 @@ public class InstructorViewController implements Initializable {
     public ImageView imgUpdate;
     public Label lblDelete;
     public ImageView imgDelete;
+
+    private final String instructorNameRegex = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";
+    private final String instructorContactRegex = "^0\\d{9}$";
+    private final String instructorEmailRegex = "^[a-zA-Z0-9._%+-]{1,64}@[a-zA-Z0-9.-]{1,255}\\.[a-zA-Z]{2,}$";
 
     public void goToInstructorDetailsPage(){
         try {
@@ -96,8 +103,41 @@ public class InstructorViewController implements Initializable {
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
+        int wrongRegex = 0;
+
+        if(inputInstructorId.getText().equals("") || inputInstructorName.getText().equals("") || inputContact.getText().equals("") || inputEmail.getText().equals("")){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields").show();
+            return;
+        }
+
         if(inputAssignedCourse.getValue()==null){
             new Alert(Alert.AlertType.ERROR, "Select A Course").show();
+            return;
+        }
+
+        if(!inputContact.getText().matches(instructorContactRegex)){
+            inputContact.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputContact.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputEmail.getText().matches(instructorEmailRegex)){
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputEmail.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(!inputInstructorName.getText().matches(instructorNameRegex)){
+            inputInstructorName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            wrongRegex++;
+        } else {
+            inputInstructorName.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
+
+        if(wrongRegex>0){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields Correctly").show();
             return;
         }
 
@@ -146,6 +186,13 @@ public class InstructorViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
+            List<LessonDTO> lessonDTOS = lessonBO.getAllLessons();
+            for (LessonDTO lessonDTO : lessonDTOS) {
+                if(lessonDTO.getInstructorId().equals(inputInstructorId.getText())){
+                    lessonBO.deleteLesson(lessonDTO.getLessonId());
+                }
+            }
+
             boolean isDeleted = instructorBO.deleteInstructor(inputInstructorId.getText());
 
             if(isDeleted){

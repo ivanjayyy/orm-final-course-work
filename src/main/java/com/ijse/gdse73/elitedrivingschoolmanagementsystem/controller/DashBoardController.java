@@ -40,6 +40,11 @@ public class DashBoardController implements Initializable {
     }
 
     public void btnUsersOnAction(MouseEvent mouseEvent) {
+        if(!LoginPageController.isAdmin){
+            new Alert(Alert.AlertType.ERROR, "You Are Not Authorized To View This Page").show();
+            return;
+        }
+
         navigateTo("/view/Users/UsersPage.fxml");
     }
 

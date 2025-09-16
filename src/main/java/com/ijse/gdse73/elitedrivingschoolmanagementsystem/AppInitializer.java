@@ -2,23 +2,21 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.*;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.config.FactoryConfiguration;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AppInitializer extends Application {
 
@@ -64,6 +62,8 @@ public class AppInitializer extends Application {
 
 
 
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -71,4 +71,5 @@ public class AppInitializer extends Application {
         stage.setResizable(false);
         stage.show();
     }
+
 }

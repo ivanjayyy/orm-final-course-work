@@ -80,7 +80,7 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="40.0">
+            <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="25.0">
                <children>
                   <HBox alignment="CENTER" layoutX="110.0" layoutY="557.0" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                      <children>
@@ -107,6 +107,29 @@
                         <Insets left="70.0" right="70.0" />
                      </VBox.margin>
                   </VBox>
+                  <HBox alignment="CENTER" layoutX="160.0" layoutY="492.0" onMouseClicked="#btnViewStudentsOfCourse" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="STUDENTS">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-student-50.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <VBox.margin>
+                        <Insets left="150.0" right="150.0" />
+                     </VBox.margin>
+                  </HBox>
                   <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                      <children>
                         <Label fx:id="lblUpdate" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">

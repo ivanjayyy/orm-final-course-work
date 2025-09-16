@@ -4,6 +4,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.InstructorsTM;
 import javafx.collections.FXCollections;
@@ -36,6 +37,11 @@ public class InstructorDetailsController implements Initializable {
     public static boolean addInstructor;
 
     public void btnViewOnAction(MouseEvent mouseEvent) {
+        if(!LoginPageController.isAdmin){
+            new Alert(Alert.AlertType.ERROR, "You Are Not Authorized To View This Page").show();
+            return;
+        }
+
         if(selectedInstructorId == null) {
             new Alert(Alert.AlertType.ERROR, "Please Select An Instructor").show();
             return;
@@ -102,6 +108,11 @@ public class InstructorDetailsController implements Initializable {
     }
 
     public void btnAddOnAction(MouseEvent mouseEvent) {
+        if(!LoginPageController.isAdmin){
+            new Alert(Alert.AlertType.ERROR, "You Are Not Authorized To View This Page").show();
+            return;
+        }
+
         if(selectedInstructorId != null) {
             new Alert(Alert.AlertType.ERROR, "Please Unselect The Instructor").show();
             return;

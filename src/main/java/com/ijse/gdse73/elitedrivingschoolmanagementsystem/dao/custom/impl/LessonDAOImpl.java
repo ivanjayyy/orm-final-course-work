@@ -79,14 +79,17 @@ public class LessonDAOImpl implements LessonDAO {
     }
 
     @Override
-    public ArrayList<Lesson> search(String id) {
+    public ArrayList<Lesson> search(String text) {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         ArrayList<Lesson> lessonList;
+        String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Lesson WHERE id = :lessonId", Lesson.class);
-            query.setParameter("lessonId", id);
+            Query query = session.createQuery("FROM Lesson WHERE id LIKE :lessonId OR student.name LIKE :studentId OR instructor.id LIKE :instructorId", Lesson.class);
+            query.setParameter("lessonId", searchText);
+            query.setParameter("studentId", searchText);
+            query.setParameter("instructorId", searchText);
 
             lessonList = (ArrayList<Lesson>) query.getResultList();
             transaction.commit();

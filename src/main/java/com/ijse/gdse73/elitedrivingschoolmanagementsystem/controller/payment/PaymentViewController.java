@@ -14,16 +14,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,11 +35,13 @@ public class PaymentViewController implements Initializable {
     public TextField inputPaymentId;
     public JFXComboBox<String> inputCourseName;
     public TextField inputPaidAmount;
-    public TextField inputPaymentDate;
+    public DatePicker inputPaymentDate;
     public Label lblUpdate;
     public ImageView imgUpdate;
     public Label lblDelete;
     public ImageView imgDelete;
+
+    private final String paidAmountRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
 
     public void goToPaymentDetailsPage(){
         try {
@@ -62,15 +63,45 @@ public class PaymentViewController implements Initializable {
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
+        if(inputPaymentId.getText().equals("") || inputPaymentDate.getValue() == null || inputPaidAmount.getText().equals("") ){
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields").show();
+            return;
+        }
+
         if(inputCourseName.getValue() == null){
             new Alert(Alert.AlertType.ERROR, "Select A Course").show();
             return;
         }
 
-        if(PaymentDetailsController.addPayment){
-            String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
+        if (!inputPaidAmount.getText().matches(paidAmountRegex)) {
+            inputPaidAmount.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields Correctly").show();
+            return;
+        } else {
+            inputPaidAmount.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
 
-            PaymentDTO payment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getText(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
+        List<PaymentDTO> paymentDTOS = paymentBO.searchPayment(StudentDetailsController.selectedStudentId);
+        String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
+        BigDecimal courseFee = courseBO.searchCourse(courseId).getFirst().getFee();
+        int paymentCount = 0;
+
+        for (PaymentDTO paymentDTO : paymentDTOS) {
+            if(paymentDTO.getCourseId().equals(courseId)) {
+                paymentCount = paymentCount + Integer.parseInt(String.valueOf(paymentDTO.getPaidAmount()));
+            }
+        }
+
+        int fullPayment = paymentCount + Integer.parseInt(inputPaidAmount.getText());
+
+        if(fullPayment > courseFee.intValue()){
+            new Alert(Alert.AlertType.ERROR, "Payment Is Greater Than Course Fee").show();
+            return;
+        }
+
+        if(PaymentDetailsController.addPayment){
+
+            PaymentDTO payment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getValue().toString(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
             boolean isAdded = paymentBO.savePayment(payment);
 
             if(isAdded){
@@ -82,9 +113,8 @@ public class PaymentViewController implements Initializable {
             }
 
         }else {
-            String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
 
-            PaymentDTO updatedPayment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getText(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
+            PaymentDTO updatedPayment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getValue().toString(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
             boolean isUpdated = paymentBO.updatePayment(updatedPayment);
 
             if(isUpdated){
@@ -112,7 +142,7 @@ public class PaymentViewController implements Initializable {
         } else {
             inputCourseName.setValue(null);
             inputPaidAmount.setText("");
-            inputPaymentDate.setText("");
+            inputPaymentDate.setValue(null);
 
             new Alert(Alert.AlertType.INFORMATION, "Page Reset").show();
         }
@@ -142,7 +172,7 @@ public class PaymentViewController implements Initializable {
             inputPaymentId.setText(PaymentDetailsController.selectedPaymentId);
             inputCourseName.setValue(courseName);
             inputPaidAmount.setText(paidAmount);
-            inputPaymentDate.setText(paymentDate);
+            inputPaymentDate.setValue(LocalDate.parse(paymentDate));
 
         }
     }

@@ -1,5 +1,9 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor;
 
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -8,11 +12,15 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class InstructorsPageController implements Initializable {
     public AnchorPane ancInstructors;
     public AnchorPane ancInstructorPage;
+
+    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,6 +42,16 @@ public class InstructorsPageController implements Initializable {
         if(InstructorDetailsController.selectedInstructorId == null) {
             new Alert(Alert.AlertType.ERROR, "Please Select An Instructor").show();
             return;
+        }
+
+        ArrayList<LessonDTO> lessonDTOS = lessonBO.searchLesson(InstructorDetailsController.selectedInstructorId);
+        for (LessonDTO lessonDTO : lessonDTOS) {
+            LocalDate lessonDate = LocalDate.parse(lessonDTO.getDate());
+
+            if(lessonDate.isBefore(LocalDate.now())){
+                lessonDTO.setStatus("Completed");
+                lessonBO.updateLesson(lessonDTO);
+            }
         }
 
         try {

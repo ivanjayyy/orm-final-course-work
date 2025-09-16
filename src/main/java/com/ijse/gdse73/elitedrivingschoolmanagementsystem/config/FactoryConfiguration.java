@@ -20,8 +20,7 @@ public class FactoryConfiguration {
                 .addAnnotatedClass(Lesson.class)
                 .addAnnotatedClass(Payment.class)
                 .addAnnotatedClass(Student.class)
-                .addAnnotatedClass(User.class)
-                .addAnnotatedClass(Test.class);
+                .addAnnotatedClass(User.class);
 
         Properties properties = new java.util.Properties();
 

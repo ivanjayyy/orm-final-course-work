@@ -81,6 +81,7 @@ public class AppliedCoursesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTableData();
+        addCourseIds.clear();
 
         if(StudentDetailsController.addStudent){
             addCourseNamesToComboBox();

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -53,11 +54,7 @@
                                     </font>
                                 </TextField>
                                 <JFXComboBox fx:id="inputCourseName" focusColor="WHITE" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="781.0" promptText="select course" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" unFocusColor="WHITE" />
-                        <TextField fx:id="inputPaymentDate" alignment="CENTER" layoutX="10.0" layoutY="252.0" prefHeight="53.0" prefWidth="239.0" promptText="payment date" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </TextField>
+                        <DatePicker fx:id="inputPaymentDate" editable="false" prefHeight="53.0" prefWidth="732.0" promptText="select date" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" />
                         <TextField fx:id="inputPaidAmount" alignment="CENTER" layoutX="10.0" layoutY="467.0" prefHeight="53.0" prefWidth="239.0" promptText="paid amount" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                            <font>
                               <Font size="25.0" />

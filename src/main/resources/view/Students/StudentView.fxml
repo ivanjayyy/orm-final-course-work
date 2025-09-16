@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -143,14 +144,7 @@
                               </JFXRadioButton>
                            </children>
                         </HBox>
-                        <TextField fx:id="inputRegisterDate" alignment="CENTER" layoutX="10.0" layoutY="579.0" prefHeight="53.0" prefWidth="239.0" promptText="register date" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </TextField>
+                        <DatePicker fx:id="inputRegisterDate" editable="false" prefHeight="53.0" prefWidth="707.0" promptText="select date" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" />
                             </children>
                         </VBox>
                     </children>

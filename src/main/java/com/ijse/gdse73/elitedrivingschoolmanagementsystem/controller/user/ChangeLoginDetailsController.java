@@ -21,9 +21,19 @@ public class ChangeLoginDetailsController implements Initializable {
     public TextField inputUsername;
     public TextField inputPassword;
 
+    private final String usernameRegex = "^[a-zA-Z0-9_-]+$";
+
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
         UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
         String password = BCrypt.hashpw(inputPassword.getText(), BCrypt.gensalt(12));
+
+        if(!inputUsername.getText().matches(usernameRegex)){
+            inputUsername.styleProperty().setValue("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+            new Alert(Alert.AlertType.ERROR, "Please Fill All Fields Correctly").show();
+            return;
+        } else {
+            inputUsername.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+        }
 
         ArrayList<UserDTO> userList = userBO.searchUser(LoginPageController.currentUser);
         UserDTO checkUser = userList.getFirst();
