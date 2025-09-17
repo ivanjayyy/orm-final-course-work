@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController">
+<AnchorPane fx:id="ancLoginPage" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController">
    <children>
-      <VBox layoutX="193.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox alignment="CENTER" layoutX="193.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <HBox alignment="CENTER" prefHeight="119.0" prefWidth="790.0">
                <children>
@@ -42,9 +42,9 @@
                   </Label>
                </children>
             </HBox>
-            <VBox prefHeight="1000.0" prefWidth="690.0" style="-fx-border-color: black; -fx-border-width: 5px; -fx-border-radius: 30;">
+            <VBox alignment="CENTER" prefHeight="572.0" prefWidth="690.0" style="-fx-border-color: black; -fx-border-width: 5px; -fx-border-radius: 30;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="500.0" prefWidth="680.0">
+                  <HBox alignment="CENTER" prefHeight="1.0" prefWidth="680.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="101.0" prefWidth="325.0" text="LOGIN">
                            <font>
@@ -53,21 +53,27 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="500.0" prefWidth="800.0" spacing="50.0">
+                  <HBox alignment="CENTER" prefHeight="149.0" prefWidth="680.0" spacing="50.0">
                      <children>
-                        <Label alignment="CENTER" text="Username/&#10;Email">
+                        <Label alignment="CENTER" text="Username">
                            <font>
                               <Font name="System Bold" size="25.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                         </Label>
                         <TextField fx:id="inputUsername" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" text="a">
                            <font>
                               <Font size="25.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets bottom="15.0" />
+                           </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="15.0" layoutY="115.0" prefHeight="500.0" prefWidth="800.0" spacing="50.0">
+                  <HBox alignment="CENTER" layoutX="15.0" layoutY="115.0" prefHeight="99.0" prefWidth="680.0" spacing="50.0">
                      <children>
                         <Label alignment="CENTER" text="Password">
                            <font>
@@ -88,29 +94,44 @@
                                  <font>
                                     <Font size="25.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </HBox.margin>
                               </PasswordField>
                               <ImageView fx:id="imgEye" fitHeight="45.0" fitWidth="30.0" onMouseClicked="#btnShowPasswordOnAction" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../Users/ivanj/Downloads/icons8-eye-96.png" />
+                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-eye-96.png" />
                                  </image>
                                  <HBox.margin>
-                                    <Insets left="16.0" />
+                                    <Insets bottom="10.0" left="16.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
                         </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="500.0" prefWidth="680.0">
+                  <HBox alignment="CENTER" prefHeight="196.0" prefWidth="680.0">
                      <children>
-                        <JFXButton fx:id="btnLogin" buttonType="RAISED" onAction="#btnLoginOnAction" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 20; -fx-background-radius: 20;" text="LOG IN">
-                           <font>
-                              <Font name="System Bold" size="28.0" />
-                           </font>
-                        </JFXButton>
+                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="236.0">
+                           <children>
+                              <JFXButton fx:id="btnLogin" buttonType="RAISED" onAction="#btnLoginOnAction" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 20; -fx-background-radius: 20;" text="LOG IN">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label alignment="CENTER" onMouseClicked="#btnForgotPasswordOnAction" text="forgot password" textFill="#0164a1">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox prefHeight="28.0" prefWidth="680.0" />
                </children>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" />

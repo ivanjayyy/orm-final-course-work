@@ -3,7 +3,7 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.LoginPageController;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.CoursesTM;
 import javafx.collections.FXCollections;

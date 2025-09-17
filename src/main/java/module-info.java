@@ -11,6 +11,7 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     requires java.desktop;
     requires jbcrypt;
     requires javafx.base;
+    requires java.mail;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.config to jakarta.persistence;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity to org.hibernate.orm.core;
@@ -23,6 +24,7 @@ module com.ijse.gdse73.elitedrivingschoolmanagementsystem {
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.user to javafx.fxml;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.lesson to javafx.fxml;
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.payment to javafx.fxml;
+    opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin to javafx.fxml;
 
     opens com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm to javafx.base;
 }

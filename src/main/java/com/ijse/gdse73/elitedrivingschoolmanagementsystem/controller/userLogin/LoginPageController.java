@@ -1,4 +1,4 @@
-package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller;
+package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
@@ -15,10 +15,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 public class LoginPageController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
+    public AnchorPane ancLoginPage;
     public JFXButton btnLogin;
     public TextField inputUsername;
     public PasswordField inputPassword;
@@ -109,6 +110,21 @@ public class LoginPageController implements Initializable {
             inputPassword.setManaged(false);
             visiblePassword.setText(inputPassword.getText());
             isPasswordVisible = true;
+        }
+    }
+
+    public void btnForgotPasswordOnAction(MouseEvent mouseEvent) {
+        try {
+            ancLoginPage.getChildren().clear();
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/UserLogin/ForgotPassword.fxml"));
+
+            anchorPane.prefWidthProperty().bind(ancLoginPage.widthProperty());
+            anchorPane.prefHeightProperty().bind(ancLoginPage.heightProperty());
+
+            ancLoginPage.getChildren().add(anchorPane);
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
         }
     }
 }

@@ -9,6 +9,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -226,6 +227,22 @@ public class StudentViewController implements Initializable {
             }
 
             if(isAdded){
+                String courseIdsString = "";
+
+                for (String courseId : courseIds) {
+                    courseIdsString = courseIdsString  + "\n" + courseBO.searchCourse(courseId).getFirst().getName();
+                }
+
+                String to = inputEmail.getText();
+                String subject = "Welcome To Elite Driving School";
+                String body = "Dear student,\nYour assigned courses are: \n" + courseIdsString + "\n\nThank you for your registration.";
+
+                Runnable task = () -> {
+                    Mail.sendMail(to, subject, body);
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+
                 new Alert(Alert.AlertType.INFORMATION,"Student Added Successfully").show();
                 goToStudentDetailsPage();
 

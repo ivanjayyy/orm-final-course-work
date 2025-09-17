@@ -8,6 +8,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.collections.FXCollections;
@@ -84,15 +85,15 @@ public class PaymentViewController implements Initializable {
         List<PaymentDTO> paymentDTOS = paymentBO.searchPayment(StudentDetailsController.selectedStudentId);
         String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
         BigDecimal courseFee = courseBO.searchCourse(courseId).getFirst().getFee();
-        int paymentCount = 0;
+        double paymentCount = 0;
 
         for (PaymentDTO paymentDTO : paymentDTOS) {
             if(paymentDTO.getCourseId().equals(courseId)) {
-                paymentCount = paymentCount + Integer.parseInt(String.valueOf(paymentDTO.getPaidAmount()));
+                paymentCount = paymentCount + Double.parseDouble(String.valueOf(paymentDTO.getPaidAmount()));
             }
         }
 
-        int fullPayment = paymentCount + Integer.parseInt(inputPaidAmount.getText());
+        double fullPayment = paymentCount + Double.parseDouble(inputPaidAmount.getText());
 
         if(fullPayment > courseFee.intValue()){
             new Alert(Alert.AlertType.ERROR, "Payment Is Greater Than Course Fee").show();
@@ -105,6 +106,16 @@ public class PaymentViewController implements Initializable {
             boolean isAdded = paymentBO.savePayment(payment);
 
             if(isAdded){
+                String to = studentBO.searchStudent(StudentDetailsController.selectedStudentId).getFirst().getEmail();
+                String subject = "Payment Added To The Database";
+                String body = "Dear Student,\nWe received your payment.\n\nPayment = Rs." + inputPaidAmount.getText() + "\nCourse = " + inputCourseName.getValue() + "\nDate = "+inputPaymentDate.getValue()+"\n\nThank you.";
+
+                Runnable task = () -> {
+                    Mail.sendMail(to, subject, body);
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+
                 new Alert(Alert.AlertType.INFORMATION,"Payment Added Successfully").show();
                 goToPaymentDetailsPage();
 
