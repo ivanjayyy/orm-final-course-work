@@ -9,6 +9,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +47,7 @@ public class LessonViewController implements Initializable {
     public ImageView imgDelete;
 
     String instructorCourse = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getCourseId();
+    String oldDate;
 
     public void goToLessonDetailsPage(){
         try {
@@ -128,6 +130,16 @@ public class LessonViewController implements Initializable {
             boolean isAdded = lessonBO.saveLesson(lesson);
 
             if(isAdded){
+                String to = studentBO.searchStudent(studentId).getFirst().getEmail();
+                String subject = "New Lesson Added";
+                String body = "Dear Student,\nYou have a New Lesson.\n\nCourse : "+courseBO.searchCourse(instructorCourse).getFirst().getName()+"\nDate : "+inputLessonDate.getValue()+"\n\nThank you.";
+
+                Runnable task = () -> {
+                    Mail.sendMail(to, subject, body);
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+
                 new Alert(Alert.AlertType.INFORMATION,"Lesson Added Successfully").show();
                 goToLessonDetailsPage();
 
@@ -147,6 +159,16 @@ public class LessonViewController implements Initializable {
             boolean isUpdated = lessonBO.updateLesson(updatedLesson);
 
             if(isUpdated){
+                String to = studentBO.searchStudent(studentId).getFirst().getEmail();
+                String subject = "Your Lesson Has Been Updated";
+                String body = "Dear Student,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" has been Updated.\n\n   New Date : " +inputLessonDate.getValue()+ "\n\nThank you.";
+
+                Runnable task = () -> {
+                    Mail.sendMail(to, subject, body);
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+
                 new Alert(Alert.AlertType.INFORMATION,"Lesson Updated Successfully").show();
                 goToLessonDetailsPage();
 
@@ -161,6 +183,16 @@ public class LessonViewController implements Initializable {
             boolean isDeleted = lessonBO.deleteLesson(inputLessonId.getText());
 
             if(isDeleted){
+                String to = studentBO.searchStudent(inputStudentName.getValue()).getFirst().getEmail();
+                String subject = "Your Lesson Has Been Canceled";
+                String body = "Dear Student,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" has been Canceled.\n\nThank you.";
+
+                Runnable task = () -> {
+                    Mail.sendMail(to, subject, body);
+                };
+                Thread thread = new Thread(task);
+                thread.start();
+
                 new Alert(Alert.AlertType.INFORMATION,"Lesson Deleted Successfully").show();
                 goToLessonDetailsPage();
 
@@ -200,6 +232,7 @@ public class LessonViewController implements Initializable {
             inputLessonId.setText(selectedLesson.getLessonId());
             inputStudentName.setValue(studentName);
             inputLessonDate.setValue(LocalDate.parse(selectedLesson.getDate()));
+            oldDate = inputLessonDate.getValue().toString();
             inputLessonStatus.setText(selectedLesson.getStatus());
         }
     }
