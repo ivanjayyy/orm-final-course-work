@@ -6,6 +6,8 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.DrivingSchoolException;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.ExceptionHandler;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
@@ -79,26 +81,6 @@ public class LessonViewController implements Initializable {
             return;
         }
 
-        ArrayList<LessonDTO> lessonDTOS = lessonBO.searchLesson(inputStudentName.getValue());
-        for (LessonDTO lessonDTO : lessonDTOS) {
-            String date = lessonDTO.getDate();
-
-            if(date.equals(inputLessonDate.getValue().toString())){
-                new Alert(Alert.AlertType.ERROR, "Student Already Has A Lesson On This Date").show();
-                return;
-            }
-        }
-
-        ArrayList<LessonDTO> lessonDTOS2 = lessonBO.searchLesson(InstructorDetailsController.selectedInstructorId);
-        for (LessonDTO lessonDTO : lessonDTOS2) {
-            String date = lessonDTO.getDate();
-
-            if(date.equals(inputLessonDate.getValue().toString())){
-                new Alert(Alert.AlertType.ERROR, "Instructor Already Has A Lesson On This Date").show();
-                return;
-            }
-        }
-
         String studentId = studentBO.searchStudent(inputStudentName.getValue()).getFirst().getStudentId();
         String startDate = studentBO.searchStudent(studentId).getFirst().getDate();
 
@@ -127,15 +109,28 @@ public class LessonViewController implements Initializable {
                     InstructorDetailsController.selectedInstructorId,
                     studentId
             );
-            boolean isAdded = lessonBO.saveLesson(lesson);
+            boolean isAdded;
+
+            try {
+                isAdded = lessonBO.saveLesson(lesson);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(isAdded){
                 String to = studentBO.searchStudent(studentId).getFirst().getEmail();
+                String toInstructor = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getEmail();
+
                 String subject = "New Lesson Added";
+
                 String body = "Dear Student,\nYou have a New Lesson.\n\nCourse : "+courseBO.searchCourse(instructorCourse).getFirst().getName()+"\nDate : "+inputLessonDate.getValue()+"\n\nThank you.";
+                String bodyInstructor = "Dear Instructor,\nYou have a New Lesson.\n\nStudent : "+inputStudentName.getValue()+"\nDate : "+inputLessonDate.getValue()+"\n\nThank you.";
 
                 Runnable task = () -> {
                     Mail.sendMail(to, subject, body);
+                    Mail.sendMail(toInstructor, subject, bodyInstructor);
                 };
                 Thread thread = new Thread(task);
                 thread.start();
@@ -156,15 +151,28 @@ public class LessonViewController implements Initializable {
                     InstructorDetailsController.selectedInstructorId,
                     studentId
             );
-            boolean isUpdated = lessonBO.updateLesson(updatedLesson);
+            boolean isUpdated;
+
+            try {
+                isUpdated = lessonBO.updateLesson(updatedLesson);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(isUpdated){
                 String to = studentBO.searchStudent(studentId).getFirst().getEmail();
+                String toInstructor = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getEmail();
+
                 String subject = "Your Lesson Has Been Updated";
+
                 String body = "Dear Student,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" has been Updated.\n\n   New Date : " +inputLessonDate.getValue()+ "\n\nThank you.";
+                String bodyInstructor = "Dear Instructor,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" for " +inputStudentName.getValue()+ " has been Updated.\n\n   New Date : " +inputLessonDate.getValue()+ "\n\nThank you.";
 
                 Runnable task = () -> {
                     Mail.sendMail(to, subject, body);
+                    Mail.sendMail(toInstructor, subject, bodyInstructor);
                 };
                 Thread thread = new Thread(task);
                 thread.start();
@@ -184,11 +192,16 @@ public class LessonViewController implements Initializable {
 
             if(isDeleted){
                 String to = studentBO.searchStudent(inputStudentName.getValue()).getFirst().getEmail();
+                String toInstructor = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getEmail();
+
                 String subject = "Your Lesson Has Been Canceled";
+
                 String body = "Dear Student,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" has been Canceled.\n\nThank you.";
+                String bodyInstructor = "Dear Instructor,\nYour " +courseBO.searchCourse(instructorCourse).getFirst().getName()+ " Lesson on "+oldDate+" for " +inputStudentName.getValue()+ " has been Canceled.\n\nThank you.";
 
                 Runnable task = () -> {
                     Mail.sendMail(to, subject, body);
+                    Mail.sendMail(toInstructor, subject, bodyInstructor);
                 };
                 Thread thread = new Thread(task);
                 thread.start();

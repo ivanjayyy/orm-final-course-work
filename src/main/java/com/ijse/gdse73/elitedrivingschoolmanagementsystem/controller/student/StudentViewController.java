@@ -6,6 +6,8 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.PaymentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.DrivingSchoolException;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.ExceptionHandler;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
@@ -213,8 +215,16 @@ public class StudentViewController implements Initializable {
                 gender = "Female";
             }
 
+            boolean isAdded;
             StudentDTO student = new StudentDTO(inputStudentId.getText(),gender,inputStudentName.getText(),inputAddress.getText(),inputNic.getText(),inputContact.getText(),inputEmail.getText(),radioYes.isSelected(),inputRegisterDate.getValue().toString(),courseIds);
-            boolean isAdded = studentBO.saveStudent(student);
+
+            try {
+                isAdded = studentBO.saveStudent(student);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(student.isRegistered()){
                 for (String courseId : courseIds) {
@@ -259,7 +269,15 @@ public class StudentViewController implements Initializable {
             updatedStudent.setEmail(inputEmail.getText());
             updatedStudent.setRegistered(radioYes.isSelected());
 
-            boolean isUpdated = studentBO.updateStudent(updatedStudent);
+            boolean isUpdated;
+
+            try {
+                isUpdated = studentBO.updateStudent(updatedStudent);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,"Student Updated Successfully").show();

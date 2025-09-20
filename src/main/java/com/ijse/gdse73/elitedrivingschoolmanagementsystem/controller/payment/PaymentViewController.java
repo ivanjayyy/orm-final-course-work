@@ -5,6 +5,8 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.PaymentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.DrivingSchoolException;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.ExceptionHandler;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
@@ -82,28 +84,35 @@ public class PaymentViewController implements Initializable {
             inputPaidAmount.styleProperty().setValue("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
         }
 
-        List<PaymentDTO> paymentDTOS = paymentBO.searchPayment(StudentDetailsController.selectedStudentId);
+//        List<PaymentDTO> paymentDTOS = paymentBO.searchPayment(StudentDetailsController.selectedStudentId);
         String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
-        BigDecimal courseFee = courseBO.searchCourse(courseId).getFirst().getFee();
-        double paymentCount = 0;
-
-        for (PaymentDTO paymentDTO : paymentDTOS) {
-            if(paymentDTO.getCourseId().equals(courseId)) {
-                paymentCount = paymentCount + Double.parseDouble(String.valueOf(paymentDTO.getPaidAmount()));
-            }
-        }
-
-        double fullPayment = paymentCount + Double.parseDouble(inputPaidAmount.getText());
-
-        if(fullPayment > courseFee.intValue()){
-            new Alert(Alert.AlertType.ERROR, "Payment Is Greater Than Course Fee").show();
-            return;
-        }
+//        BigDecimal courseFee = courseBO.searchCourse(courseId).getFirst().getFee();
+//        double paymentCount = 0;
+//
+//        for (PaymentDTO paymentDTO : paymentDTOS) {
+//            if(paymentDTO.getCourseId().equals(courseId)) {
+//                paymentCount = paymentCount + Double.parseDouble(String.valueOf(paymentDTO.getPaidAmount()));
+//            }
+//        }
+//
+//        double fullPayment = paymentCount + Double.parseDouble(inputPaidAmount.getText());
+//
+//        if(fullPayment > courseFee.intValue()){
+//            new Alert(Alert.AlertType.ERROR, "Payment Is Greater Than Course Fee").show();
+//            return;
+//        }
 
         if(PaymentDetailsController.addPayment){
-
             PaymentDTO payment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getValue().toString(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
-            boolean isAdded = paymentBO.savePayment(payment);
+            boolean isAdded;
+
+            try {
+                isAdded = paymentBO.savePayment(payment);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(isAdded){
                 String to = studentBO.searchStudent(StudentDetailsController.selectedStudentId).getFirst().getEmail();
@@ -126,7 +135,15 @@ public class PaymentViewController implements Initializable {
         }else {
 
             PaymentDTO updatedPayment = new PaymentDTO(inputPaymentId.getText(),inputPaymentDate.getValue().toString(),new BigDecimal(inputPaidAmount.getText()),StudentDetailsController.selectedStudentId,courseId);
-            boolean isUpdated = paymentBO.updatePayment(updatedPayment);
+            boolean isUpdated;
+
+            try {
+                isUpdated = paymentBO.updatePayment(updatedPayment);
+            } catch (DrivingSchoolException ex) {
+                ExceptionHandler.handleException(ex);
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+                return;
+            }
 
             if(isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,"Payment Updated Successfully").show();

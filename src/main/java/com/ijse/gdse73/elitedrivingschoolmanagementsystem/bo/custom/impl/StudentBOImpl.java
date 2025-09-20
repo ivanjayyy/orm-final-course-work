@@ -1,6 +1,7 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.impl;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.RegistrationException;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.DAOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.DAOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.custom.CourseDAO;
@@ -18,12 +19,19 @@ public class StudentBOImpl implements StudentBO {
     StudentDAO studentDAO = (StudentDAO) DAOFactory.getInstance().getDAO(DAOTypes.STUDENT);
 
     @Override
-    public boolean saveStudent(StudentDTO studentDTO) {
+    public boolean saveStudent(StudentDTO studentDTO) throws RegistrationException {
         List<Course> courses = new ArrayList<>();
 
         for (String courseId : studentDTO.getCourseIds()) {
             Course course = courseDAO.search(courseId).getFirst();
             courses.add(course);
+        }
+
+        ArrayList<Student> students = studentDAO.getAll();
+        for (Student student : students) {
+            if(student.getNic().equals(studentDTO.getNic())){
+                throw new RegistrationException(studentDTO.getName() + " is a Duplicate Student.");
+            }
         }
 
         return studentDAO.save(new Student(studentDTO.getStudentId(),studentDTO.getGender(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getNic(),studentDTO.getContact(),studentDTO.getEmail(),studentDTO.isRegistered(),studentDTO.getDate(),courses));
