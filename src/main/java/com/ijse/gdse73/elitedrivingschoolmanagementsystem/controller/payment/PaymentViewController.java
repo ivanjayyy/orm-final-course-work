@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -30,6 +31,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class PaymentViewController implements Initializable {
+    public TextField lblPaymentDone;
+    public TextField lblPaymentLeft;
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOTypes.PAYMENT);
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
@@ -215,5 +218,22 @@ public class PaymentViewController implements Initializable {
         }
 
         inputCourseName.setItems(courseNames);
+    }
+
+    public void selectCourseOnAction(ActionEvent actionEvent) {
+        String courseId = courseBO.searchCourse(inputCourseName.getValue()).getFirst().getCourseId();
+        ArrayList<PaymentDTO> paymentDTOS = paymentBO.searchPayment(StudentDetailsController.selectedStudentId);
+        double paidAmount = 0;
+
+        for(PaymentDTO paymentDTO : paymentDTOS){
+            if(paymentDTO.getCourseId().equals(courseId)){
+                paidAmount = paidAmount + paymentDTO.getPaidAmount().doubleValue();
+            }
+        }
+
+        lblPaymentDone.setText(paidAmount+"");
+
+        double courseFee = courseBO.searchCourse(courseId).getFirst().getFee().doubleValue();
+        lblPaymentLeft.setText((courseFee-paidAmount)+"");
     }
 }
