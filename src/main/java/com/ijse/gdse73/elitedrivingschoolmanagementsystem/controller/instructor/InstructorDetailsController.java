@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,7 @@ public class InstructorDetailsController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancInstructorDetails;
+    public TextField inputSearch;
     public TableView<InstructorsTM> tblInstructors;
     public TableColumn<InstructorsTM,String> colInstructorId;
     public TableColumn<InstructorsTM,String> colInstructorName;
@@ -67,6 +69,7 @@ public class InstructorDetailsController implements Initializable {
     }
 
     private void resetPage() {
+        inputSearch.clear();
         loadTableDate();
         selectedInstructorId = null;
         addInstructor = false;
@@ -77,7 +80,14 @@ public class InstructorDetailsController implements Initializable {
         colInstructorName.setCellValueFactory(new PropertyValueFactory<>("instructorName"));
         colCourseName.setCellValueFactory(new PropertyValueFactory<>("assignedCourse"));
 
-        List<InstructorDTO> instructorDTOS = instructorBO.getAllInstructors();
+        List<InstructorDTO> instructorDTOS;
+
+        if(inputSearch.getText().isEmpty()) {
+            instructorDTOS = instructorBO.getAllInstructors();
+        } else {
+            instructorDTOS = instructorBO.searchInstructor(inputSearch.getText());
+        }
+
         ObservableList<InstructorsTM> instructorsTMS = FXCollections.observableArrayList();
 
         for (InstructorDTO instructorDTO : instructorDTOS) {
@@ -133,5 +143,9 @@ public class InstructorDetailsController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableDate();
     }
 }

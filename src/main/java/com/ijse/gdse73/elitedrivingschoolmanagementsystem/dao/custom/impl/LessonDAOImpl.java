@@ -86,10 +86,13 @@ public class LessonDAOImpl implements LessonDAO {
         String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Lesson WHERE id LIKE :lessonId OR student.name LIKE :studentId OR instructor.id LIKE :instructorId", Lesson.class);
+            Query query = session.createQuery("FROM Lesson WHERE id LIKE :lessonId OR student.name LIKE :studentId OR instructor.id LIKE :instructorId OR course.name LIKE :courseId OR date LIKE :lessonDate OR status LIKE :lessonStatus", Lesson.class);
             query.setParameter("lessonId", searchText);
             query.setParameter("studentId", searchText);
             query.setParameter("instructorId", searchText);
+            query.setParameter("courseId", searchText);
+            query.setParameter("lessonDate", searchText);
+            query.setParameter("lessonStatus", searchText);
 
             lessonList = (ArrayList<Lesson>) query.getResultList();
             transaction.commit();

@@ -9,6 +9,7 @@ public interface LessonBO extends SuperBO {
 
     boolean saveLesson(LessonDTO lessonDTO);
     boolean updateLesson(LessonDTO lessonDTO);
+    boolean updateLessonStatus(LessonDTO lessonDTO);
     boolean deleteLesson(String id);
     ArrayList<LessonDTO> searchLesson(String id);
     ArrayList<LessonDTO> getAllLessons();

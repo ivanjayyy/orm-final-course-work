@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +27,7 @@ public class CourseDetailsController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancCourseDetails;
+    public TextField inputSearch;
     public TableView<CoursesTM> tblCourses;
     public TableColumn<CoursesTM, String> colCourseId;
     public TableColumn<CoursesTM, String> colCourseName;
@@ -65,6 +67,7 @@ public class CourseDetailsController implements Initializable {
     }
 
     public void resetPage(){
+        inputSearch.clear();
         loadTableData();
         selectedCourseId = null;
         addCourse = false;
@@ -75,7 +78,14 @@ public class CourseDetailsController implements Initializable {
         colCourseName.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
 
-        List<CourseDTO> courseDTOS = courseBO.getAllCourses();
+        List<CourseDTO> courseDTOS;
+
+        if(inputSearch.getText().isEmpty()) {
+            courseDTOS = courseBO.getAllCourses();
+        } else {
+            courseDTOS = courseBO.searchCourse(inputSearch.getText());
+        }
+
         ObservableList<CoursesTM> coursesTMS = FXCollections.observableArrayList();
 
         for (CourseDTO courseDTO : courseDTOS) {
@@ -131,4 +141,7 @@ public class CourseDetailsController implements Initializable {
         new Alert(Alert.AlertType.INFORMATION, "Page Reset").show();
     }
 
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableData();
+    }
 }

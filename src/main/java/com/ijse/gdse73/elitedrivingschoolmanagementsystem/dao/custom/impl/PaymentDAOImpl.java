@@ -86,9 +86,11 @@ public class PaymentDAOImpl implements PaymentDAO {
         String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Payment WHERE id LIKE :paymentId OR student.id LIKE :studentId", Payment.class);
+            Query query = session.createQuery("FROM Payment WHERE id LIKE :paymentId OR student.id LIKE :studentId OR date LIKE :paymentDate OR course.name LIKE :courseId", Payment.class);
             query.setParameter("paymentId", searchText);
             query.setParameter("studentId", searchText);
+            query.setParameter("paymentDate", searchText);
+            query.setParameter("courseId", searchText);
 
             paymentList = (ArrayList<Payment>) query.getResultList();
             transaction.commit();

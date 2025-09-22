@@ -10,16 +10,16 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.LessonsTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -28,6 +28,8 @@ public class LessonDetailsController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancLessonDetails;
+    public TextField inputSearch;
+    public DatePicker btnDatePicker;
     public TableView<LessonsTM> tblLessons;
     public TableColumn<LessonsTM, String> colDate;
     public TableColumn<LessonsTM, String> colStudentName;
@@ -94,10 +96,12 @@ public class LessonDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnDatePicker.getEditor().setVisible(false);
         resetPage();
     }
 
     private void resetPage() {
+        inputSearch.clear();
         loadTableData();
         selectedLessonId = null;
         addLesson = false;
@@ -109,7 +113,14 @@ public class LessonDetailsController implements Initializable {
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colLessonStatus.setCellValueFactory(new PropertyValueFactory<>("lessonStatus"));
 
-        List<LessonDTO> lessonDTOS = lessonBO.getAllLessons();
+        List<LessonDTO> lessonDTOS;
+
+        if(inputSearch.getText().isEmpty()){
+            lessonDTOS = lessonBO.getAllLessons();
+        } else {
+            lessonDTOS = lessonBO.searchLesson(inputSearch.getText());
+        }
+
         ObservableList<LessonsTM> lessonsTMS = FXCollections.observableArrayList();
 
         for (LessonDTO lessonDTO : lessonDTOS) {
@@ -123,5 +134,13 @@ public class LessonDetailsController implements Initializable {
             }
         }
         tblLessons.setItems(lessonsTMS);
+    }
+
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableData();
+    }
+
+    public void datePickerOnAction(ActionEvent actionEvent) {
+        inputSearch.setText(btnDatePicker.getValue().toString());
     }
 }

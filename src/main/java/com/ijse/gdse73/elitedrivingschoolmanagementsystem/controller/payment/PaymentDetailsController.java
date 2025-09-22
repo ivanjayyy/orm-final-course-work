@@ -9,11 +9,10 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.PaymentsTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +26,8 @@ public class PaymentDetailsController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancPaymentDetails;
+    public TextField inputSearch;
+    public DatePicker btnDatePicker;
     public TableView<PaymentsTM> tblPayments;
     public TableColumn<PaymentsTM, String> colPaymentId;
     public TableColumn<PaymentsTM, String> colCourseName;
@@ -50,6 +51,7 @@ public class PaymentDetailsController implements Initializable {
     }
 
     private void resetPage() {
+        inputSearch.clear();
         loadTableData();
         selectedPaymentId = null;
         addPayment = false;
@@ -61,7 +63,14 @@ public class PaymentDetailsController implements Initializable {
         colPaymentDate.setCellValueFactory(new PropertyValueFactory<>("paymentDate"));
         colPaidAmount.setCellValueFactory(new PropertyValueFactory<>("paidAmount"));
 
-        List<PaymentDTO> paymentDTOS = paymentBO.getAllPayments();
+        List<PaymentDTO> paymentDTOS;
+
+        if(inputSearch.getText().isEmpty()){
+            paymentDTOS = paymentBO.getAllPayments();
+        } else {
+            paymentDTOS = paymentBO.searchPayment(inputSearch.getText());
+        }
+
         ObservableList<PaymentsTM> paymentsTMS = FXCollections.observableArrayList();
 
         for(PaymentDTO paymentDTO : paymentDTOS){
@@ -121,6 +130,15 @@ public class PaymentDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnDatePicker.getEditor().setVisible(false);
         resetPage();
+    }
+
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableData();
+    }
+
+    public void datePickerOnAction(ActionEvent actionEvent) {
+        inputSearch.setText(btnDatePicker.getValue().toString());
     }
 }

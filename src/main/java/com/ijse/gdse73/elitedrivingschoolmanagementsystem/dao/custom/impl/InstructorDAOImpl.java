@@ -79,14 +79,19 @@ public class InstructorDAOImpl implements InstructorDAO {
     }
 
     @Override
-    public ArrayList<Instructor> search(String id) {
+    public ArrayList<Instructor> search(String text) {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
         ArrayList<Instructor> instructorList;
+        String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Instructor WHERE id = :instructorId", Instructor.class);
-            query.setParameter("instructorId", id);
+            Query query = session.createQuery("FROM Instructor WHERE id LIKE :instructorId OR name LIKE :instructorName OR contact LIKE :instructorContact OR email LIKE :instructorEmail OR course.name LIKE :courseId", Instructor.class);
+            query.setParameter("instructorId", searchText);
+            query.setParameter("instructorName", searchText);
+            query.setParameter("instructorContact", searchText);
+            query.setParameter("instructorEmail", searchText);
+            query.setParameter("courseId", searchText);
 
             instructorList = (ArrayList<Instructor>) query.getResultList();
             transaction.commit();

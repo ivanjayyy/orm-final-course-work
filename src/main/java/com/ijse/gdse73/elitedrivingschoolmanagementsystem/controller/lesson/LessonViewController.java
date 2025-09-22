@@ -143,6 +143,11 @@ public class LessonViewController implements Initializable {
             }
 
         } else {
+            if(inputLessonStatus.getText().equals("Completed")) {
+                new Alert(Alert.AlertType.ERROR, "Can't Update Already Completed Lessons").show();
+                return;
+            }
+
             LessonDTO updatedLesson = new LessonDTO(
                     inputLessonId.getText(),
                     inputLessonDate.getValue().toString(),
@@ -188,6 +193,11 @@ public class LessonViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
+            if(inputLessonStatus.getText().equals("Completed")) {
+                new Alert(Alert.AlertType.ERROR, "Can't Delete Already Completed Lessons").show();
+                return;
+            }
+
             boolean isDeleted = lessonBO.deleteLesson(inputLessonId.getText());
 
             if(isDeleted){

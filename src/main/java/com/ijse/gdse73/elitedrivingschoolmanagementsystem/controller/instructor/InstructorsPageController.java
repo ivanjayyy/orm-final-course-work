@@ -50,7 +50,7 @@ public class InstructorsPageController implements Initializable {
 
             if(lessonDate.isBefore(LocalDate.now())){
                 lessonDTO.setStatus("Completed");
-                lessonBO.updateLesson(lessonDTO);
+                lessonBO.updateLessonStatus(lessonDTO);
             }
         }
 

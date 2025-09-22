@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoadingScreenController">
+   <children>
+      <HBox alignment="CENTER" layoutX="204.0" layoutY="89.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="172.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/letter-l.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/letter.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="110.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/capital-letter-dancing-letter.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="210.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-d.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="310.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-i.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-word.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="510.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-g.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
