@@ -8,11 +8,10 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.StudentsTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,6 +25,8 @@ public class StudentDetailsController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancStudentDetails;
+    public TextField inputSearch;
+    public DatePicker btnDatePicker;
     public TableView<StudentsTM> tblStudents;
     public TableColumn<StudentsTM,String> colStudentId;
     public TableColumn<StudentsTM,String> colStudentName;
@@ -56,10 +57,12 @@ public class StudentDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnDatePicker.getEditor().setVisible(false);
         resetPage();
     }
 
     private void resetPage() {
+        inputSearch.clear();
         loadTableData();
         selectedStudentId = null;
         addStudent = false;
@@ -70,7 +73,14 @@ public class StudentDetailsController implements Initializable {
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("studentName"));
         colStudentIsRegistered.setCellValueFactory(new PropertyValueFactory<>("isRegistered"));
 
-        List<StudentDTO> studentDTOS = studentBO.getAllStudents();
+        List<StudentDTO> studentDTOS;
+
+        if(inputSearch.getText().isEmpty()){
+            studentDTOS = studentBO.getAllStudents();
+        } else {
+            studentDTOS = studentBO.searchStudent(inputSearch.getText());
+        }
+
         ObservableList<StudentsTM> studentsTMS = FXCollections.observableArrayList();
 
         for (StudentDTO studentDTO : studentDTOS) {
@@ -128,5 +138,13 @@ public class StudentDetailsController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    public void datePickerOnAction(ActionEvent actionEvent) {
+        inputSearch.setText(btnDatePicker.getValue().toString());
+    }
+
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableData();
     }
 }

@@ -1,19 +1,36 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CoursesPageController implements Initializable {
+    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
+
     public AnchorPane ancCourses;
+    public TextField lblNoOfCourses;
+    public TextField lblMostPopularCourse;
+    public TextField lblBestInstructor;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadDataLabels();
+
         try {
             ancCourses.getChildren().clear();
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Courses/CourseDetails.fxml"));
@@ -26,5 +43,30 @@ public class CoursesPageController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    public void loadDataLabels() {
+        int courseCount = courseBO.getAllCourses().size();
+        int maxStudentCount = 0;
+
+        List<CourseDTO> courseDTOS = courseBO.getAllCourses();
+        List<StudentDTO> studentDTOS = studentBO.getAllStudents();
+
+        for(CourseDTO courseDTO : courseDTOS){
+            int studentCount = 0;
+
+            for(StudentDTO studentDTO : studentDTOS){
+                if(studentDTO.getCourseIds().contains(courseDTO.getCourseId())) {
+                    ++studentCount;
+                }
+            }
+
+            if(studentCount > maxStudentCount){
+                maxStudentCount = studentCount;
+                lblMostPopularCourse.setText(courseDTO.getName());
+            }
+        }
+
+        lblNoOfCourses.setText(String.valueOf(courseCount));
     }
 }

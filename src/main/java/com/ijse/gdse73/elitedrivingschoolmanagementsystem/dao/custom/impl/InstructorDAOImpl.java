@@ -86,12 +86,13 @@ public class InstructorDAOImpl implements InstructorDAO {
         String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Instructor WHERE id LIKE :instructorId OR name LIKE :instructorName OR contact LIKE :instructorContact OR email LIKE :instructorEmail OR course.name LIKE :courseId", Instructor.class);
+            Query query = session.createQuery("FROM Instructor WHERE id LIKE :instructorId OR name LIKE :instructorName OR contact LIKE :instructorContact OR email LIKE :instructorEmail OR course.name LIKE :courseName OR course.id LIKE :courseId", Instructor.class);
             query.setParameter("instructorId", searchText);
             query.setParameter("instructorName", searchText);
             query.setParameter("instructorContact", searchText);
             query.setParameter("instructorEmail", searchText);
             query.setParameter("courseId", searchText);
+            query.setParameter("courseName", searchText);
 
             instructorList = (ArrayList<Instructor>) query.getResultList();
             transaction.commit();

@@ -14,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
@@ -137,7 +138,8 @@ public class UserViewController implements Initializable {
         }
 
         if (UserDetailsController.addUser){
-            UserDTO user = new UserDTO(inputUserId.getText(),inputFullName.getText(),inputUserName.getText(),inputPassword.getText(),inputEmail.getText(),radioYes.isSelected());
+            String password = BCrypt.hashpw(inputPassword.getText(), BCrypt.gensalt(12));
+            UserDTO user = new UserDTO(inputUserId.getText(),inputFullName.getText(),inputUserName.getText(),password,inputEmail.getText(),radioYes.isSelected());
             boolean isAdded = userBO.saveUser(user);
 
             if(isAdded){

@@ -86,10 +86,11 @@ public class UserDAOImpl implements UserDAO {
         String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM User WHERE id LIKE :userId OR username LIKE :username OR email LIKE :email", User.class);
+            Query query = session.createQuery("FROM User WHERE id LIKE :userId OR username LIKE :username OR email LIKE :email OR name LIKE :userName", User.class);
             query.setParameter("userId", searchText);
             query.setParameter("username", searchText);
             query.setParameter("email", searchText);
+            query.setParameter("userName", searchText);
 
             userList = (ArrayList<User>) query.getResultList();
             transaction.commit();

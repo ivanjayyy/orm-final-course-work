@@ -86,9 +86,13 @@ public class StudentDAOImpl implements StudentDAO {
         String searchText = "%" + text + "%";
 
         try {
-            Query query = session.createQuery("FROM Student WHERE id LIKE :studentId OR name LIKE :studentName", Student.class);
+            Query query = session.createQuery("FROM Student WHERE id LIKE :studentId OR name LIKE :studentName OR nic LIKE :studentNic OR contact LIKE :studentContact OR email LIKE :studentEmail OR date LIKE :registrationDate", Student.class);
             query.setParameter("studentId", searchText);
             query.setParameter("studentName", searchText);
+            query.setParameter("studentNic", searchText);
+            query.setParameter("studentContact", searchText);
+            query.setParameter("studentEmail", searchText);
+            query.setParameter("registrationDate", searchText);
 
             studentList = (ArrayList<Student>) query.getResultList();
             transaction.commit();

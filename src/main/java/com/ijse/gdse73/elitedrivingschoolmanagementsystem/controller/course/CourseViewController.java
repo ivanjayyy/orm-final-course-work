@@ -3,10 +3,10 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.*;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -28,7 +28,8 @@ import java.util.ResourceBundle;
 
 public class CourseViewController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
-//    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
+    InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
+    StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancCourseView;
     public TextField inputCourseFee;
@@ -40,6 +41,8 @@ public class CourseViewController implements Initializable {
     public ImageView imgUpdate;
     public Label lblDelete;
     public ImageView imgDelete;
+    public TextField lblNoOfStudents;
+    public TextField lblNoOfInstructors;
 
     private final String courseNameRegex = "^[A-Z][a-z]+(?: [A-Z][a-z]+)*$";
     private final String courseFeeRegex = "^[0-9]+(\\.[0-9]{1,2})?$";
@@ -85,8 +88,21 @@ public class CourseViewController implements Initializable {
             inputDescription.setText(selectedCourse.getDescription());
             inputDuration.setText(String.valueOf(selectedCourse.getDuration()));
             inputCourseFee.setText(String.valueOf(selectedCourse.getFee()));
-        }
 
+            List<InstructorDTO> instructors = instructorBO.searchInstructor(selectedCourse.getCourseId());
+            int instructorsCount = instructors.size();
+            lblNoOfInstructors.setText(instructorsCount+"");
+
+            List<StudentDTO> students = studentBO.getAllStudents();
+            int studentsCount = 0;
+
+            for(StudentDTO studentDTO : students){
+                if(studentDTO.getCourseIds().contains(selectedCourse.getCourseId())){
+                    ++studentsCount;
+                }
+            }
+            lblNoOfStudents.setText(studentsCount+"");
+        }
     }
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {

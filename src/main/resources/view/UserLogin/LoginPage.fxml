@@ -60,7 +60,7 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <HBox.margin>
-                              <Insets right="20.0" />
+                              <Insets right="20.0" top="5.0" />
                            </HBox.margin>
                         </Label>
                         <TextField fx:id="inputUsername" alignment="CENTER" prefHeight="49.0" prefWidth="328.0" promptText="user@email.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" text="a">
@@ -80,7 +80,7 @@
                               <Font name="System Bold" size="25.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="46.0" right="20.0" />
+                              <Insets left="46.0" right="20.0" top="10.0" />
                            </HBox.margin>
                         </Label>
                         <HBox alignment="CENTER" prefHeight="109.0" prefWidth="374.0">

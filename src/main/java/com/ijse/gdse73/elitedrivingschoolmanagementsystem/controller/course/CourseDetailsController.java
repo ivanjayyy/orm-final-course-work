@@ -3,8 +3,13 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.CoursesTM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +30,8 @@ import java.util.ResourceBundle;
 
 public class CourseDetailsController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
+    LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancCourseDetails;
     public TextField inputSearch;
@@ -133,6 +140,26 @@ public class CourseDetailsController implements Initializable {
 
         if (selectedCourse != null) {
             selectedCourseId = selectedCourse.getCourseId();
+        }
+    }
+
+    private void loadDataLabels() {
+        List<InstructorDTO> instructors = instructorBO.searchInstructor(selectedCourseId);
+        int maxLessons = 0;
+
+        for(InstructorDTO instructorDTO : instructors){
+            List<LessonDTO> lessons = lessonBO.searchLesson(instructorDTO.getInstructorId());
+            int lessonCount = 0;
+
+            for(LessonDTO lessonDTO : lessons){
+                ++lessonCount;
+            }
+            System.out.println(instructorDTO.getName() + " : " + lessonCount);
+
+            if(lessonCount > maxLessons){
+                maxLessons = lessonCount;
+//                CoursesPageController.lblBestInstructor.setText(instructorDTO.getName());
+            }
         }
     }
 

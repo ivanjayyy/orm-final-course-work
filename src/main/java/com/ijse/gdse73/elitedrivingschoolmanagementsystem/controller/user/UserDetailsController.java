@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +26,7 @@ public class UserDetailsController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
     public AnchorPane ancUserDetails;
+    public TextField inputSearch;
     public TableView<UsersTM> tblUsers;
     public TableColumn<UsersTM, String> colUserId;
     public TableColumn<UsersTM, String> colIsAdmin;
@@ -59,6 +61,7 @@ public class UserDetailsController implements Initializable {
     }
 
     private void resetPage() {
+        inputSearch.clear();
         loadTableData();
         selectedUserId = null;
         addUser = false;
@@ -69,7 +72,14 @@ public class UserDetailsController implements Initializable {
         colFullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         colIsAdmin.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
 
-        List<UserDTO> userDTOS = userBO.getAllUsers();
+        List<UserDTO> userDTOS;
+
+        if (inputSearch.getText().isEmpty()) {
+            userDTOS = userBO.getAllUsers();
+        } else {
+            userDTOS = userBO.searchUser(inputSearch.getText());
+        }
+
         ObservableList<UsersTM> usersTMS = FXCollections.observableArrayList();
 
         for (UserDTO userDTO : userDTOS) {
@@ -127,5 +137,9 @@ public class UserDetailsController implements Initializable {
     public void btnResetOnAction(MouseEvent mouseEvent) {
         resetPage();
         new Alert(Alert.AlertType.INFORMATION, "Page Reset").show();
+    }
+
+    public void btnSearchOnAction(MouseEvent mouseEvent) {
+        loadTableData();
     }
 }
