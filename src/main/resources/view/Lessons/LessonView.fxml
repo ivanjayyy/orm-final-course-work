@@ -53,8 +53,8 @@
                                         <Font size="25.0" />
                                     </font>
                                 </TextField>
-                                <JFXComboBox fx:id="inputStudentName" focusColor="WHITE" nodeOrientation="RIGHT_TO_LEFT" prefHeight="53.0" prefWidth="781.0" promptText="select student" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" unFocusColor="WHITE" />
-                        <DatePicker fx:id="inputLessonDate" editable="false" prefHeight="53.0" prefWidth="732.0" promptText="select date" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" />
+                                <JFXComboBox fx:id="inputStudentName" focusColor="WHITE" nodeOrientation="RIGHT_TO_LEFT" onAction="#selectStudentOnAction" prefHeight="53.0" prefWidth="781.0" promptText="select student" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" unFocusColor="WHITE" />
+                        <DatePicker fx:id="inputLessonDate" editable="false" onAction="#selectDateOnAction" prefHeight="53.0" prefWidth="732.0" promptText="select date" style="-fx-font-size: 25px; -fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;" />
                                 <TextField fx:id="inputLessonStatus" alignment="CENTER" editable="false" layoutX="10.0" layoutY="350.0" prefHeight="53.0" prefWidth="239.0" promptText="status" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;">
                                     <font>
                                         <Font size="25.0" />
@@ -85,11 +85,49 @@
                             <VBox.margin>
                                 <Insets left="70.0" right="70.0" />
                             </VBox.margin>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Student Available">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblStudentAvailable" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
                         </VBox>
                         <VBox layoutX="110.0" layoutY="359.0" prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                             <VBox.margin>
                                 <Insets left="70.0" right="70.0" />
                             </VBox.margin>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="311.0" text="Instructor Available">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblInstructorAvailable" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
                         </VBox>
                         <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>

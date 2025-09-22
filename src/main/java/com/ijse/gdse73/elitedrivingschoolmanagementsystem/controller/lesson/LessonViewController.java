@@ -8,13 +8,16 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.DrivingSchoolException;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.ExceptionHandler;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.SchedulingException;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Lesson;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -33,6 +36,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LessonViewController implements Initializable {
+    public TextField lblStudentAvailable;
+    public TextField lblInstructorAvailable;
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
     InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
@@ -47,6 +52,9 @@ public class LessonViewController implements Initializable {
     public ImageView imgUpdate;
     public Label lblDelete;
     public ImageView imgDelete;
+
+    boolean studentSelected;
+    boolean dateSelected;
 
     String instructorCourse = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getCourseId();
     String oldDate;
@@ -234,6 +242,8 @@ public class LessonViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        studentSelected = false;
+        dateSelected = false;
         addStudentNamesToComboBox();
         inputLessonStatus.setText("Pending");
 
@@ -276,5 +286,45 @@ public class LessonViewController implements Initializable {
             }
         }
         inputStudentName.setItems(studentNames);
+    }
+
+    public void selectDateOnAction(ActionEvent actionEvent) {
+        dateSelected = true;
+        checkAvailability();
+    }
+
+    public void selectStudentOnAction(ActionEvent actionEvent) {
+        studentSelected = true;
+        checkAvailability();
+    }
+
+    private void checkAvailability(){
+        if(studentSelected && dateSelected){
+            lblStudentAvailable.setText("True");
+            lblInstructorAvailable.setText("True");
+
+            String studentName = inputStudentName.getValue();
+            String lessonDate = inputLessonDate.getValue().toString();
+
+            ArrayList<LessonDTO> lessons = lessonBO.searchLesson(studentName);
+
+            for (LessonDTO lesson : lessons) {
+                String date = lesson.getDate();
+
+                if(date.equals(lessonDate)){
+                    lblStudentAvailable.setText("False");
+                }
+            }
+
+            ArrayList<LessonDTO> lessons2 = lessonBO.searchLesson(InstructorDetailsController.selectedInstructorId);
+
+            for (LessonDTO lesson : lessons2) {
+                String date = lesson.getDate();
+
+                if(date.equals(lessonDate)){
+                    lblInstructorAvailable.setText("False");
+                }
+            }
+        }
     }
 }
