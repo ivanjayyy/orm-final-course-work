@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -39,6 +40,8 @@ public class StudentViewController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancStudentView;
+    public TextField lblLessonsLeft;
+    public TextField lblNextLesson;
     public TextField inputStudentId;
     public JFXRadioButton radioMale;
     public JFXRadioButton radioFemale;
@@ -96,10 +99,10 @@ public class StudentViewController implements Initializable {
             inputStudentId.setText(studentBO.getNextStudentId());
 
             lblUpdate.setText("ADD");
-            imgUpdate.setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/images/add.gif")));
+            imgUpdate.setImage(new Image(getClass().getResourceAsStream("/images/add.gif")));
 
             lblDelete.setText("RESET");
-            imgDelete.setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/images/reset.gif")));
+            imgDelete.setImage(new Image(getClass().getResourceAsStream("/images/reset.gif")));
         }
 
         if(StudentDetailsController.selectedStudentId!=null){
@@ -131,6 +134,39 @@ public class StudentViewController implements Initializable {
                 radioYes.setSelected(true);
             } else {
                 radioNo.setSelected(true);
+            }
+
+            List<LessonDTO> lessonDTOS = lessonBO.searchLesson(selectedStudent.getStudentId());
+            int pendingLessons = 0;
+
+            for(LessonDTO lessonDTO : lessonDTOS){
+                if(lessonDTO.getStatus().equals("Pending")){
+                    ++pendingLessons;
+                }
+            }
+
+            lblLessonsLeft.setText(String.valueOf(pendingLessons));
+
+            if(pendingLessons > 0){
+                LocalDate nextLesson = null;
+
+                for(LessonDTO lessonDTO : lessonDTOS){
+                    if(lessonDTO.getStatus().equals("Pending")){
+                        nextLesson = LocalDate.parse(lessonDTO.getDate());
+                        break;
+                    }
+                }
+
+                for(LessonDTO lessonDTO : lessonDTOS){
+                    if(lessonDTO.getStatus().equals("Pending")){
+                        LocalDate date = LocalDate.parse(lessonDTO.getDate());
+
+                        if(nextLesson.isAfter(date)){
+                            nextLesson = date;
+                        }
+                    }
+                }
+                lblNextLesson.setText(nextLesson.toString());
             }
         }
     }

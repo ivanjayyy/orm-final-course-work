@@ -103,7 +103,14 @@ public class InstructorViewController implements Initializable {
             lblLessonsLeft.setText(pendingLessons+"");
 
             if(pendingLessons > 0){
-                LocalDate nextLesson = LocalDate.parse(lessonDTOS.getFirst().getDate());
+                LocalDate nextLesson = null;
+
+                for(LessonDTO lessonDTO : lessonDTOS){
+                    if(lessonDTO.getStatus().equals("Pending")){
+                        nextLesson = LocalDate.parse(lessonDTO.getDate());
+                        break;
+                    }
+                }
 
                 for(LessonDTO lessonDTO : lessonDTOS){
                     if(lessonDTO.getStatus().equals("Pending")){

@@ -3,6 +3,7 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,6 +14,9 @@ import java.util.ResourceBundle;
 public class StudentsPageController implements Initializable {
     public AnchorPane ancStudents;
     public AnchorPane ancStudentsPage;
+    public TextField lblWeeksLeft;
+    public TextField lblWeeksDone;
+    public TextField lblLessonsDone;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
