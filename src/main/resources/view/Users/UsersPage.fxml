@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -21,9 +22,57 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
                     <children>
-                        <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
-                        <VBox layoutX="670.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
-                        <VBox layoutX="825.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
+                        <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="No of Users">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblNoOfUsers" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children></VBox>
+                        <VBox layoutX="670.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Admins">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblAdmins" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children></VBox>
+                        <VBox layoutX="825.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Non Admins">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblNonAdmins" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children></VBox>
                     </children>
                 </HBox>
                 <AnchorPane fx:id="ancUsers" prefHeight="680.0" prefWidth="1630.0" style="-fx-background-color: black;" />

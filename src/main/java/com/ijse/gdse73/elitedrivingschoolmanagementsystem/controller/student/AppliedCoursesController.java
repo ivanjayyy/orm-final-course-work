@@ -3,8 +3,10 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.AssignedCoursesTM;
 import com.jfoenix.controls.JFXButton;
@@ -28,6 +30,7 @@ import java.util.ResourceBundle;
 public class AppliedCoursesController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
+    InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
 
     ObservableList<AssignedCoursesTM> assignedCoursesTMS = FXCollections.observableArrayList();
 
@@ -123,7 +126,11 @@ public class AppliedCoursesController implements Initializable {
         ObservableList<String> courseNames = FXCollections.observableArrayList();
 
         for (CourseDTO courseDTO : courseDTOS) {
-            courseNames.add(courseDTO.getName());
+            List<InstructorDTO> instructors = instructorBO.searchInstructor(courseDTO.getCourseId());
+
+            if(!instructors.isEmpty()){
+                courseNames.add(courseDTO.getName());
+            }
         }
 
         comboCourses.setItems(courseNames);
