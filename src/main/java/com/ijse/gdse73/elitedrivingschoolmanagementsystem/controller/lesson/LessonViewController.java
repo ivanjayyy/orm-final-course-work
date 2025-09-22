@@ -13,6 +13,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Lesson;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -36,14 +38,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class LessonViewController implements Initializable {
-    public TextField lblStudentAvailable;
-    public TextField lblInstructorAvailable;
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
     InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancLessonView;
+    public TextField lblStudentAvailable;
+    public TextField lblInstructorAvailable;
+    public HBox btnBack;
+    public HBox btnUpdate;
+    public HBox btnDelete;
     public TextField inputLessonId;
     public JFXComboBox<String> inputStudentName;
     public DatePicker inputLessonDate;
@@ -246,6 +251,10 @@ public class LessonViewController implements Initializable {
         dateSelected = false;
         addStudentNamesToComboBox();
         inputLessonStatus.setText("Pending");
+
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
+        ButtonScale.hboxScaling(btnBack);
 
         if(LessonDetailsController.addLesson){
             inputLessonId.setText(lessonBO.getNextLessonId());

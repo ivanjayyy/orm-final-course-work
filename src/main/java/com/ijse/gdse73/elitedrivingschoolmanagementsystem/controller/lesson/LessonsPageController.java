@@ -5,12 +5,14 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.List;
@@ -20,6 +22,7 @@ public class LessonsPageController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancLessons;
+    public HBox btnHome;
     public AnchorPane ancLessonPage;
     public TextField lblNoOfLessons;
     public TextField lblCompletedLessons;
@@ -43,6 +46,7 @@ public class LessonsPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadLabelData();
+        ButtonScale.hboxScaling(btnHome);
 
         try {
             ancLessons.getChildren().clear();

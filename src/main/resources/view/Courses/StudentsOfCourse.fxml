@@ -18,7 +18,7 @@
                     <children>
                         <VBox alignment="CENTER" prefHeight="163.0" prefWidth="68.0">
                             <children>
-                                <HBox alignment="CENTER" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                                <HBox fx:id="btnBack" alignment="CENTER" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                     <children>
                                         <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                             <image>

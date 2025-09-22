@@ -29,7 +29,7 @@
                         <VBox layoutX="825.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;" />
                         <VBox alignment="CENTER" prefHeight="175.0" prefWidth="79.0">
                             <children>
-                                <HBox alignment="CENTER" onMouseClicked="#btnHomeOnAction" prefHeight="72.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                                <HBox fx:id="btnHome" alignment="CENTER" onMouseClicked="#btnHomeOnAction" prefHeight="72.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                     <children>
                                         <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                             <image>

@@ -4,6 +4,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -29,6 +31,8 @@ public class ForgotPasswordController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
     public AnchorPane ancForgotPassword;
+    public HBox btnBack;
+    public JFXButton btnVerify;
     public TextField inputEmail;
     public Label lblCountDown;
     public JFXButton btnResend;
@@ -86,6 +90,10 @@ public class ForgotPasswordController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        emailSentCount = 0;
         limitTextField();
+
+        ButtonScale.buttonScaling(btnVerify);
+        ButtonScale.buttonScaling(btnResend);
+        ButtonScale.hboxScaling(btnBack);
     }
 
     private void limitTextField() {

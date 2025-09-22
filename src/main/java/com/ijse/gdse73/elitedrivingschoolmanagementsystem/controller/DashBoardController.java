@@ -1,14 +1,17 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,10 +22,23 @@ import java.util.ResourceBundle;
 
 public class DashBoardController implements Initializable {
     public AnchorPane ancDashBoard;
+    public HBox btnCourses;
+    public HBox btnInstructors;
+    public HBox btnStudents;
+    public HBox btnUsers;
+    public ImageView btnPower;
+    public ImageView btnEdit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         navigateTo("/view/Courses/CoursesPage.fxml");
+
+        ButtonScale.hboxScaling(btnCourses);
+        ButtonScale.hboxScaling(btnInstructors);
+        ButtonScale.hboxScaling(btnStudents);
+        ButtonScale.hboxScaling(btnUsers);
+        ButtonScale.imageScaling(btnPower);
+        ButtonScale.imageScaling(btnEdit);
     }
 
     public void navigateTo(String path) {

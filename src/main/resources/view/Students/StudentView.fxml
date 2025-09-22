@@ -151,7 +151,7 @@
                 </HBox>
                 <VBox alignment="CENTER" prefHeight="680.0" prefWidth="539.0" spacing="25.0">
                     <children>
-                        <HBox alignment="CENTER" layoutX="110.0" layoutY="557.0" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnBack" alignment="CENTER" layoutX="110.0" layoutY="557.0" onMouseClicked="#btnBackOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
                                 <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -214,7 +214,7 @@
                         </VBox>
                      </children>
                         </VBox>
-                  <HBox alignment="CENTER" layoutX="160.0" layoutY="592.0" onMouseClicked="#btnSeeCoursesOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                  <HBox fx:id="btnCourses" alignment="CENTER" layoutX="160.0" layoutY="592.0" onMouseClicked="#btnSeeCoursesOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                      <children>
                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="COURSES">
                            <font>
@@ -234,7 +234,7 @@
                         <DropShadow />
                      </effect>
                   </HBox>
-                        <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnUpdate" alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
                                 <Label fx:id="lblUpdate" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">
                                     <font>
@@ -254,7 +254,7 @@
                         <DropShadow />
                      </effect>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="110.0" layoutY="577.0" onMouseClicked="#btnDeleteOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnDelete" alignment="CENTER" layoutX="110.0" layoutY="577.0" onMouseClicked="#btnDeleteOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>
                                 <Label fx:id="lblDelete" alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="DELETE">
                                     <font>

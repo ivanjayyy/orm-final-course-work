@@ -4,6 +4,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -24,6 +26,9 @@ public class UserViewController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
     public AnchorPane ancUserView;
+    public HBox btnBack;
+    public HBox btnUpdate;
+    public HBox btnDelete;
     public TextField inputUserId;
     public TextField inputFullName;
     public TextField inputUserName;
@@ -65,6 +70,10 @@ public class UserViewController implements Initializable {
         radioYes.setToggleGroup(toggleGroup);
         radioNo.setToggleGroup(toggleGroup);
         radioNo.setSelected(true);
+
+        ButtonScale.hboxScaling(btnBack);
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
 
         if(UserDetailsController.addUser){
             inputUserId.setText(userBO.getNextUserId());

@@ -45,7 +45,7 @@
                         </TextField>
                         <VBox alignment="TOP_CENTER" prefHeight="90.0" prefWidth="63.0">
                            <children>
-                              <HBox alignment="CENTER" onMouseClicked="#btnSearchOnAction" prefHeight="60.0" prefWidth="128.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                              <HBox fx:id="btnSearch" alignment="CENTER" onMouseClicked="#btnSearchOnAction" prefHeight="60.0" prefWidth="128.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                  <children>
                                     <ImageView fitHeight="39.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -63,7 +63,7 @@
                   </HBox>
                   <VBox alignment="TOP_CENTER" layoutX="1226.0" layoutY="10.0" prefHeight="109.0" prefWidth="63.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#btnResetOnAction" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnReset" alignment="CENTER" onMouseClicked="#btnResetOnAction" prefHeight="60.0" prefWidth="111.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                            <children>
                               <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -79,7 +79,7 @@
                   </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="109.0" prefWidth="157.0">
                             <children>
-                                <HBox alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                                <HBox fx:id="btnAdd" alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="ADD">
                                             <font>
@@ -100,7 +100,7 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" layoutX="1433.0" layoutY="10.0" prefHeight="109.0" prefWidth="157.0">
                             <children>
-                                <HBox alignment="CENTER" onMouseClicked="#btnViewOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                                <HBox fx:id="btnView" alignment="CENTER" onMouseClicked="#btnViewOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                                     <children>
                                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="VIEW">
                                             <font>

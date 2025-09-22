@@ -7,6 +7,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.PaymentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.PaymentsTM;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.List;
@@ -27,6 +29,10 @@ public class PaymentDetailsController implements Initializable {
 
     public AnchorPane ancPaymentDetails;
     public TextField inputSearch;
+    public HBox btnSearch;
+    public HBox btnReset;
+    public HBox btnAdd;
+    public HBox btnView;
     public DatePicker btnDatePicker;
     public TableView<PaymentsTM> tblPayments;
     public TableColumn<PaymentsTM, String> colPaymentId;
@@ -132,6 +138,11 @@ public class PaymentDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnDatePicker.getEditor().setVisible(false);
         resetPage();
+
+        ButtonScale.hboxScaling(btnSearch);
+        ButtonScale.hboxScaling(btnReset);
+        ButtonScale.hboxScaling(btnAdd);
+        ButtonScale.hboxScaling(btnView);
     }
 
     public void btnSearchOnAction(MouseEvent mouseEvent) {

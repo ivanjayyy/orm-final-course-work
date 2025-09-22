@@ -10,6 +10,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.Exceptio
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
@@ -22,6 +23,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -31,13 +33,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class PaymentViewController implements Initializable {
-    public TextField lblPaymentDone;
-    public TextField lblPaymentLeft;
     PaymentBO paymentBO = (PaymentBO) BOFactory.getInstance().getBO(BOTypes.PAYMENT);
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancPaymentView;
+    public TextField lblPaymentDone;
+    public TextField lblPaymentLeft;
+    public HBox btnBack;
+    public HBox btnUpdate;
+    public HBox btnDelete;
     public TextField inputPaymentId;
     public JFXComboBox<String> inputCourseName;
     public TextField inputPaidAmount;
@@ -182,6 +187,10 @@ public class PaymentViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addCourseNamesToComboBox();
+
+        ButtonScale.hboxScaling(btnBack);
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
 
         if(PaymentDetailsController.addPayment){
             inputPaymentId.setText(paymentBO.getNextPaymentId());

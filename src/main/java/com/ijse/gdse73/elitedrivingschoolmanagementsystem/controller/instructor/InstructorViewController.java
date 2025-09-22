@@ -9,6 +9,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course.Cour
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +35,9 @@ public class InstructorViewController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancInstructorView;
+    public HBox btnUpdate;
+    public HBox btnDelete;
+    public HBox btnBack;
     public TextField lblLessonsLeft;
     public TextField lblNextLesson;
     public TextField inputInstructorId;
@@ -71,6 +76,10 @@ public class InstructorViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addCourseNamesToComboBox();
+
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
+        ButtonScale.hboxScaling(btnBack);
 
         if(InstructorDetailsController.addInstructor){
             inputInstructorId.setText(instructorBO.getNextInstructorId());

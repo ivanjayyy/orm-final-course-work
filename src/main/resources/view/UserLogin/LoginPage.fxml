@@ -119,7 +119,7 @@
                                     <Font name="System Bold" size="28.0" />
                                  </font>
                               </JFXButton>
-                              <Label alignment="CENTER" onMouseClicked="#btnForgotPasswordOnAction" text="forgot password" textFill="#0164a1">
+                              <Label fx:id="btnForgotPassword" alignment="CENTER" onMouseClicked="#btnForgotPasswordOnAction" text="forgot password" textFill="#0164a1">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>

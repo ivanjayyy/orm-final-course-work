@@ -79,7 +79,7 @@
                      </children></VBox>
                   <VBox alignment="CENTER" prefHeight="175.0" prefWidth="194.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#btnPaymentsOnAction" prefHeight="72.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnPayments" alignment="CENTER" onMouseClicked="#btnPaymentsOnAction" prefHeight="72.0" prefWidth="164.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                            <children>
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="PAYMENTS">
                                  <font>

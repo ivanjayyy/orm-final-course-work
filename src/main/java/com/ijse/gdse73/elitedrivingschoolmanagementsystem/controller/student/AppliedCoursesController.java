@@ -9,6 +9,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.AssignedCoursesTM;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -39,6 +41,9 @@ public class AppliedCoursesController implements Initializable {
     public TableColumn<AssignedCoursesTM,String> colCourseName;
     public TableColumn<AssignedCoursesTM,String> colCourseId;
     public JFXComboBox<String> comboCourses;
+
+    public HBox btnAdd;
+    public HBox btnSave;
 
     public static ArrayList<String> addCourseIds = new ArrayList<>();
 
@@ -85,6 +90,9 @@ public class AppliedCoursesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTableData();
         addCourseIds.clear();
+
+        ButtonScale.hboxScaling(btnSave);
+        ButtonScale.hboxScaling(btnAdd);
 
         if(StudentDetailsController.addStudent){
             addCourseNamesToComboBox();

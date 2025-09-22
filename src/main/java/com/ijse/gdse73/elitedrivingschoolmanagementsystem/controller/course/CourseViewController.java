@@ -7,6 +7,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.*;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,6 +34,10 @@ public class CourseViewController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancCourseView;
+    public HBox btnStudents;
+    public HBox btnUpdate;
+    public HBox btnDelete;
+    public HBox btnBack;
     public TextField inputCourseFee;
     public TextField inputDuration;
     public TextField inputDescription;
@@ -70,6 +76,11 @@ public class CourseViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ButtonScale.hboxScaling(btnBack);
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
+        ButtonScale.hboxScaling(btnStudents);
+
         if(CourseDetailsController.addCourse){
             inputCourseId.setText(courseBO.getNextCourseId());
 

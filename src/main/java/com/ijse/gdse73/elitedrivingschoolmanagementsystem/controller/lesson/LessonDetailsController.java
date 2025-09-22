@@ -8,6 +8,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.LessonsTM;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -28,6 +30,10 @@ public class LessonDetailsController implements Initializable {
     StudentBO studentBO = (StudentBO) BOFactory.getInstance().getBO(BOTypes.STUDENT);
 
     public AnchorPane ancLessonDetails;
+    public HBox btnSearch;
+    public HBox btnReset;
+    public HBox btnAdd;
+    public HBox btnView;
     public TextField inputSearch;
     public DatePicker btnDatePicker;
     public TableView<LessonsTM> tblLessons;
@@ -98,6 +104,11 @@ public class LessonDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnDatePicker.getEditor().setVisible(false);
         resetPage();
+
+        ButtonScale.hboxScaling(btnSearch);
+        ButtonScale.hboxScaling(btnReset);
+        ButtonScale.hboxScaling(btnAdd);
+        ButtonScale.hboxScaling(btnView);
     }
 
     private void resetPage() {

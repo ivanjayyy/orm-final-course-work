@@ -11,6 +11,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.Exceptio
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.Mail;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -40,6 +42,10 @@ public class StudentViewController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancStudentView;
+    public HBox btnCourses;
+    public HBox btnBack;
+    public HBox btnUpdate;
+    public HBox btnDelete;
     public TextField lblLessonsLeft;
     public TextField lblNextLesson;
     public TextField inputStudentId;
@@ -94,6 +100,11 @@ public class StudentViewController implements Initializable {
         radioYes.setToggleGroup(registerGroup);
         radioNo.setToggleGroup(registerGroup);
         radioNo.setSelected(true);
+
+        ButtonScale.hboxScaling(btnCourses);
+        ButtonScale.hboxScaling(btnBack);
+        ButtonScale.hboxScaling(btnUpdate);
+        ButtonScale.hboxScaling(btnDelete);
 
         if(StudentDetailsController.addStudent){
             inputStudentId.setText(studentBO.getNextStudentId());

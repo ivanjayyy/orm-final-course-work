@@ -29,7 +29,7 @@
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="148.0" prefWidth="147.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnAdd" alignment="CENTER" onMouseClicked="#btnAddOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                            <children>
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="ADD">
                                  <font>
@@ -68,7 +68,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="149.0" prefWidth="147.0">
                      <children>
-                        <HBox alignment="CENTER" onMouseClicked="#btnSaveOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
+                        <HBox fx:id="btnSave" alignment="CENTER" onMouseClicked="#btnSaveOnAction" prefHeight="60.0" prefWidth="214.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                            <children>
                               <Label alignment="CENTER" prefHeight="50.0" prefWidth="66.0" text="SAVE">
                                  <font>

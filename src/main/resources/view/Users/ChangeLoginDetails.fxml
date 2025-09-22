@@ -55,7 +55,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="106.0" prefWidth="731.0">
                <children>
-                  <HBox alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="66.0" prefWidth="204.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 20;">
+                  <HBox fx:id="btnUpdate" alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="66.0" prefWidth="204.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: red; -fx-border-width: 3px; -fx-border-radius: 20;">
                      <children>
                         <Label alignment="CENTER" prefHeight="50.0" prefWidth="98.0" text="UPDATE">
                            <font>

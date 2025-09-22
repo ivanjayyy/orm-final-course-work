@@ -4,6 +4,8 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ public class ChangePasswordController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
 
     public AnchorPane ancChangePassword;
+    public JFXButton btnSave;
     public TextField inputPassword;
     public TextField inputConfirmPassword;
 
@@ -56,6 +59,6 @@ public class ChangePasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ButtonScale.buttonScaling(btnSave);
     }
 }

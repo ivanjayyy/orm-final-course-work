@@ -4,6 +4,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -29,6 +31,7 @@ public class LoginPageController implements Initializable {
 
     public AnchorPane ancLoginPage;
     public JFXButton btnLogin;
+    public Label btnForgotPassword;
     public TextField inputUsername;
     public PasswordField inputPassword;
     public ImageView imgEye;
@@ -89,7 +92,8 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ButtonScale.buttonScaling(btnLogin);
+        ButtonScale.labelScaling(btnForgotPassword);
     }
 
     public void btnShowPasswordOnAction(MouseEvent mouseEvent) {

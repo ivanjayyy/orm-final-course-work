@@ -7,6 +7,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.InstructorsTM;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +31,10 @@ public class InstructorDetailsController implements Initializable {
     CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancInstructorDetails;
+    public HBox btnSearch;
+    public HBox btnReset;
+    public HBox btnAdd;
+    public HBox btnView;
     public TextField inputSearch;
     public TableView<InstructorsTM> tblInstructors;
     public TableColumn<InstructorsTM,String> colInstructorId;
@@ -65,6 +71,11 @@ public class InstructorDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ButtonScale.hboxScaling(btnSearch);
+        ButtonScale.hboxScaling(btnReset);
+        ButtonScale.hboxScaling(btnAdd);
+        ButtonScale.hboxScaling(btnView);
+
         resetPage();
     }
 

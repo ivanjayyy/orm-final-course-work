@@ -1,11 +1,13 @@
 package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,9 +19,12 @@ public class StudentsPageController implements Initializable {
     public TextField lblWeeksLeft;
     public TextField lblWeeksDone;
     public TextField lblLessonsDone;
+    public HBox btnPayments;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ButtonScale.hboxScaling(btnPayments);
+
         try {
             ancStudents.getChildren().clear();
             AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Students/StudentDetails.fxml"));

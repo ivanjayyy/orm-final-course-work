@@ -5,6 +5,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.StudentsTM;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -28,6 +30,8 @@ public class StudentsOfCourseController implements Initializable {
     public TableColumn<StudentsTM,String> colStudentName;
     public TableColumn<StudentsTM,String> colIsRegistered;
 
+    public HBox btnBack;
+
     public void btnBackOnAction(MouseEvent mouseEvent) {
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         stage.close();
@@ -36,6 +40,7 @@ public class StudentsOfCourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadTableData();
+        ButtonScale.hboxScaling(btnBack);
     }
 
     private void loadTableData() {

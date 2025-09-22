@@ -5,11 +5,13 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.UserBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoginPageController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.UserDTO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -20,6 +22,7 @@ import java.util.ResourceBundle;
 public class ChangeLoginDetailsController implements Initializable {
     public TextField inputUsername;
     public TextField inputPassword;
+    public HBox btnUpdate;
 
     private final String usernameRegex = "^[a-zA-Z0-9_-]+$";
 
@@ -56,6 +59,6 @@ public class ChangeLoginDetailsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ButtonScale.hboxScaling(btnUpdate);
     }
 }
