@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,6 +33,8 @@ public class InstructorViewController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
 
     public AnchorPane ancInstructorView;
+    public TextField lblLessonsLeft;
+    public TextField lblNextLesson;
     public TextField inputInstructorId;
     public TextField inputInstructorName;
     public TextField inputContact;
@@ -88,6 +91,31 @@ public class InstructorViewController implements Initializable {
             inputContact.setText(selectedInstructor.getContact());
             inputEmail.setText(selectedInstructor.getEmail());
             inputAssignedCourse.setValue(courseName);
+
+            List<LessonDTO> lessonDTOS = lessonBO.searchLesson(selectedInstructor.getInstructorId());
+            int pendingLessons = 0;
+
+            for(LessonDTO lessonDTO : lessonDTOS){
+                if(lessonDTO.getStatus().equals("Pending")){
+                    ++pendingLessons;
+                }
+            }
+            lblLessonsLeft.setText(pendingLessons+"");
+
+            if(pendingLessons > 0){
+                LocalDate nextLesson = LocalDate.parse(lessonDTOS.getFirst().getDate());
+
+                for(LessonDTO lessonDTO : lessonDTOS){
+                    if(lessonDTO.getStatus().equals("Pending")){
+                        LocalDate date = LocalDate.parse(lessonDTO.getDate());
+
+                        if(nextLesson.isAfter(date)){
+                            nextLesson = date;
+                        }
+                    }
+                }
+                lblNextLesson.setText(nextLesson.toString());
+            }
         }
     }
 

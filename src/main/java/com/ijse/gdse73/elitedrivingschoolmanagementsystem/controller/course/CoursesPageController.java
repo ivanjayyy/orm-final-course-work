@@ -29,7 +29,7 @@ public class CoursesPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDataLabels();
+        loadLabelData();
 
         try {
             ancCourses.getChildren().clear();
@@ -45,7 +45,7 @@ public class CoursesPageController implements Initializable {
         }
     }
 
-    public void loadDataLabels() {
+    public void loadLabelData() {
         int courseCount = courseBO.getAllCourses().size();
         int maxStudentCount = 0;
 
