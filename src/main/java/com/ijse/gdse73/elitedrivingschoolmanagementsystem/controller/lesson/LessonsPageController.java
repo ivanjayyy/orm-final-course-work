@@ -2,6 +2,8 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.lesson;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
+import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;
@@ -9,6 +11,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,11 +23,14 @@ import java.util.ResourceBundle;
 
 public class LessonsPageController implements Initializable {
     LessonBO lessonBO = (LessonBO) BOFactory.getInstance().getBO(BOTypes.LESSON);
+    InstructorBO instructorBO = (InstructorBO) BOFactory.getInstance().getBO(BOTypes.INSTRUCTOR);
+    CourseBO courseBO = (CourseBO) BOFactory.getInstance().getBO(BOTypes.COURSE);
 
     public AnchorPane ancLessons;
+    public Label lblCourseName;
+    public Label lblInstructorName;
     public HBox btnHome;
     public AnchorPane ancLessonPage;
-    public TextField lblNoOfLessons;
     public TextField lblCompletedLessons;
     public TextField lblPendingLessons;
 
@@ -64,8 +70,6 @@ public class LessonsPageController implements Initializable {
 
     private void loadLabelData() {
         List<LessonDTO> lessonDTOS = lessonBO.searchLesson(InstructorDetailsController.selectedInstructorId);
-
-        int lessonCount = 0;
         int completedLessonCount = 0;
         int pendingLessonCount = 0;
 
@@ -77,10 +81,17 @@ public class LessonsPageController implements Initializable {
             }
         }
 
-        lessonCount = lessonDTOS.size();
+        String courseId = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getCourseId();
+        String courseName = courseBO.searchCourse(courseId).getFirst().getName();
+        String instructorName = instructorBO.searchInstructor(InstructorDetailsController.selectedInstructorId).getFirst().getName();
 
-        lblNoOfLessons.setText(String.valueOf(lessonCount));
+        lblInstructorName.setText(instructorName);
+        lblCourseName.setText(courseName);
         lblCompletedLessons.setText(String.valueOf(completedLessonCount));
         lblPendingLessons.setText(String.valueOf(pendingLessonCount));
+    }
+
+    public void resetPageOnAction(MouseEvent mouseEvent) {
+        loadLabelData();
     }
 }

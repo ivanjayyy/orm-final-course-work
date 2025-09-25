@@ -124,15 +124,29 @@
                         <DropShadow />
                      </effect>
                         </HBox>
-                        <VBox prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                        <VBox alignment="CENTER" prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                             <VBox.margin>
                                 <Insets left="70.0" right="70.0" />
                             </VBox.margin>
+                     <children>
+                        <TextField alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </TextField>
+                     </children>
                         </VBox>
-                        <VBox layoutX="110.0" layoutY="359.0" prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                        <VBox alignment="CENTER" layoutX="110.0" layoutY="359.0" prefHeight="132.0" prefWidth="315.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                             <VBox.margin>
                                 <Insets left="70.0" right="70.0" />
                             </VBox.margin>
+                     <children>
+                        <TextField alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </TextField>
+                     </children>
                         </VBox>
                         <HBox fx:id="btnUpdate" alignment="CENTER" onMouseClicked="#btnUpdateOnAction" prefHeight="60.0" prefWidth="306.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 20;">
                             <children>

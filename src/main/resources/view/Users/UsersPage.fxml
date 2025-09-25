@@ -20,7 +20,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
+                <HBox alignment="CENTER" onMouseEntered="#resetPageOnAction" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
                     <children>
                         <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                      <children>

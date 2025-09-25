@@ -25,6 +25,11 @@ public class ChangePasswordController implements Initializable {
     public TextField inputPassword;
     public TextField inputConfirmPassword;
 
+    private final String pattern1WeakPassword = "^[A-Za-z]+$";
+    private final String pattern2WeakPassword = "^[0-9]+$";
+    private final String pattern3WeakPassword = "^[A-Za-z0-9]+$";
+    private final String patternNormalPassword = "^[A-Za-z0-9]{6,}$";
+
     public void btnSaveOnAction(ActionEvent actionEvent) {
         if(inputPassword.getText().equals(inputConfirmPassword.getText())){
             UserDTO userDTO = userBO.searchUser(ForgotPasswordController.userId).getFirst();
@@ -60,5 +65,20 @@ public class ChangePasswordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ButtonScale.buttonScaling(btnSave);
+
+        inputPassword.textProperty().addListener((observable, oldVal, newVal) -> {
+            if (newVal.matches(patternNormalPassword)) {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: orange; -fx-border-width: 0 0 3px 0;");
+
+            } else if (newVal.matches(pattern1WeakPassword) || newVal.matches(pattern2WeakPassword) || newVal.matches(pattern3WeakPassword)) {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+
+            } else if (newVal.isEmpty()){
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+
+            } else {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: green; -fx-border-width: 0 0 3px 0;");
+            }
+        });
     }
 }

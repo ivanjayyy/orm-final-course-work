@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.userLogin.LoadingScreenController">
    <children>
       <HBox alignment="CENTER" layoutX="204.0" layoutY="89.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="172.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgL" fitHeight="100.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/letter-l.gif" />
+                  <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-l-100.png" />
                </image>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/letter.gif" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="110.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/capital-letter-dancing-letter.gif" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="210.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-d.gif" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="310.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-i.gif" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="410.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-word.gif" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="172.0" fitWidth="100.0" layoutX="510.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../Users/ivanj/Downloads/dancing-letter-letter-g.gif" />
-               </image>
-            </ImageView>
+            <Label text="O A D I N G . . .">
+               <font>
+                  <Font size="78.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
          </children>
       </HBox>
    </children>

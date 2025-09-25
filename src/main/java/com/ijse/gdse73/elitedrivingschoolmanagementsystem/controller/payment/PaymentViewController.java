@@ -30,6 +30,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PaymentViewController implements Initializable {
@@ -165,7 +166,16 @@ public class PaymentViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
-            boolean isDeleted = paymentBO.deletePayment(inputPaymentId.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = paymentBO.deletePayment(inputPaymentId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Payment Deleted Successfully").show();

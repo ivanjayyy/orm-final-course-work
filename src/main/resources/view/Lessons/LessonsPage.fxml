@@ -23,24 +23,42 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
+                <HBox alignment="CENTER" onMouseEntered="#resetPageOnAction" prefHeight="175.0" prefWidth="1630.0" spacing="60.0">
                     <children>
-                        <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                        <VBox alignment="CENTER_LEFT" prefHeight="175.0" prefWidth="636.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <HBox prefHeight="175.0" prefWidth="673.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="No of Lessons">
-                                 <font>
-                                    <Font name="System Bold" size="33.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="lblNoOfLessons" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
-                                 <font>
-                                    <Font name="System Bold" size="33.0" />
-                                 </font>
-                              </TextField>
+                              <VBox alignment="CENTER_LEFT" prefHeight="175.0" prefWidth="388.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="282.0" text="Instructor name:">
+                                       <font>
+                                          <Font name="System Bold" size="33.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="150.0" text="Course :">
+                                       <font>
+                                          <Font name="System Bold" size="33.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="175.0" prefWidth="422.0">
+                                 <children>
+                                    <Label fx:id="lblInstructorName" prefHeight="67.0" prefWidth="374.0" textFill="#575757">
+                                       <font>
+                                          <Font size="33.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblCourseName" layoutX="10.0" layoutY="31.0" prefHeight="67.0" prefWidth="374.0" textFill="#575757">
+                                       <font>
+                                          <Font size="33.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                            </children>
-                        </VBox>
+                        </HBox>
                      </children></VBox>
                         <VBox layoutX="670.0" layoutY="10.0" prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                      <children>

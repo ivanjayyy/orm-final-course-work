@@ -33,6 +33,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class StudentViewController implements Initializable {
@@ -349,7 +350,16 @@ public class StudentViewController implements Initializable {
                 }
             }
 
-            boolean isDeleted = studentBO.deleteStudent(inputStudentId.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = studentBO.deleteStudent(inputStudentId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Student Deleted Successfully").show();

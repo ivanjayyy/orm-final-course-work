@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -50,9 +51,55 @@
                   </VBox>
                </children>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="83.0" prefWidth="1155.0" spacing="100.0">
+               <children>
+                  <VBox layoutX="228.0" layoutY="10.0" prefHeight="89.0" prefWidth="377.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="150.0" prefWidth="369.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="260.0" text="Weeks Done:">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblWeeksDone" editable="false" focusTraversable="false" prefHeight="71.0" prefWidth="83.0" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="13.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="161.0" layoutY="10.0" prefHeight="89.0" prefWidth="377.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="150.0" prefWidth="369.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="260.0" text="Weeks Left:">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="lblWeeksLeft" editable="false" focusTraversable="false" prefHeight="71.0" prefWidth="83.0" style="-fx-background-color: white;">
+                                 <font>
+                                    <Font name="System Bold" size="33.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="13.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
             <HBox prefHeight="561.0" prefWidth="1155.0">
                <children>
-                  <TableView fx:id="tblAppliedCourses" prefHeight="507.0" prefWidth="1176.0" style="-fx-background-color: white; -fx-font-size: 25;">
+                  <TableView fx:id="tblAppliedCourses" onMouseClicked="#onClickTable" prefHeight="495.0" prefWidth="1115.0" style="-fx-background-color: white; -fx-font-size: 25;">
                     <columns>
                       <TableColumn fx:id="colCourseId" prefWidth="202.0" text="Course ID" />
                       <TableColumn fx:id="colCourseName" prefWidth="683.0" text="Course Name" />
@@ -63,6 +110,9 @@
                      </HBox.margin>
                   </TableView>
                </children>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="163.0" prefWidth="1155.0">
                <children>

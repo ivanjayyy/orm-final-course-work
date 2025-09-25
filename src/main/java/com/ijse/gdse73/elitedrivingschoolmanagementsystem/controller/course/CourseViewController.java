@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CourseViewController implements Initializable {
@@ -185,16 +187,16 @@ public class CourseViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
-//            List<LessonDTO> lessonDTOS = lessonBO.getAllLessons();
-//
-//            for (LessonDTO lessonDTO : lessonDTOS) {
-//                if(lessonDTO.getCourseId().equals(inputCourseId.getText()) && lessonDTO.getStatus().equals("Pending")){
-//                    new Alert(Alert.AlertType.ERROR,"There Are Lessons Still Available For This Course").show();
-//                    return;
-//                }
-//            }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
 
-            boolean isDeleted = courseBO.deleteCourse(inputCourseId.getText());
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = courseBO.deleteCourse(inputCourseId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"Course Deleted Successfully").show();

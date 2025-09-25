@@ -25,6 +25,10 @@ public class ChangeLoginDetailsController implements Initializable {
     public HBox btnUpdate;
 
     private final String usernameRegex = "^[a-zA-Z0-9_-]+$";
+    private final String pattern1WeakPassword = "^[A-Za-z]+$";
+    private final String pattern2WeakPassword = "^[0-9]+$";
+    private final String pattern3WeakPassword = "^[A-Za-z0-9]+$";
+    private final String patternNormalPassword = "^[A-Za-z0-9]{6,}$";
 
     public void btnUpdateOnAction(MouseEvent mouseEvent) {
         UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOTypes.USER);
@@ -60,5 +64,20 @@ public class ChangeLoginDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ButtonScale.hboxScaling(btnUpdate);
+
+        inputPassword.textProperty().addListener((observable, oldVal, newVal) -> {
+            if (newVal.matches(patternNormalPassword)) {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: orange; -fx-border-width: 0 0 3px 0;");
+
+            } else if (newVal.matches(pattern1WeakPassword) || newVal.matches(pattern2WeakPassword) || newVal.matches(pattern3WeakPassword)) {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: red; -fx-border-width: 0 0 3px 0;");
+
+            } else if (newVal.isEmpty()){
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 0 0 1px 0;");
+
+            } else {
+                inputPassword.setStyle("-fx-background-color: white; -fx-border-color: green; -fx-border-width: 0 0 3px 0;");
+            }
+        });
     }
 }

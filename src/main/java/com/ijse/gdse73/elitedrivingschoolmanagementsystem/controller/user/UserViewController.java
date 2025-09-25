@@ -8,10 +8,7 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;
 import com.jfoenix.controls.JFXRadioButton;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +17,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserViewController implements Initializable {
@@ -179,7 +177,16 @@ public class UserViewController implements Initializable {
 
     public void btnDeleteOnAction(MouseEvent mouseEvent) {
         if(lblDelete.getText().equals("DELETE")){
-            boolean isDeleted = userBO.deleteUser(inputUserId.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = userBO.deleteUser(inputUserId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 new Alert(Alert.AlertType.INFORMATION,"User Deleted Successfully").show();

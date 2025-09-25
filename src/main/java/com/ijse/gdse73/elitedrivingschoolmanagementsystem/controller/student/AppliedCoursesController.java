@@ -19,12 +19,15 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,6 +46,8 @@ public class AppliedCoursesController implements Initializable {
     public JFXComboBox<String> comboCourses;
 
     public HBox btnAdd;
+    public TextField lblWeeksLeft;
+    public TextField lblWeeksDone;
     public HBox btnSave;
 
     public static ArrayList<String> addCourseIds = new ArrayList<>();
@@ -142,5 +147,26 @@ public class AppliedCoursesController implements Initializable {
         }
 
         comboCourses.setItems(courseNames);
+    }
+
+    public void onClickTable(MouseEvent mouseEvent) {
+        if(StudentDetailsController.selectedStudentId != null){
+            AssignedCoursesTM selectedCourse = tblAppliedCourses.getSelectionModel().getSelectedItem();
+
+            if(selectedCourse != null){
+                String courseId = selectedCourse.getCourseId();
+
+                int courseDuration = courseBO.searchCourse(courseId).getFirst().getDuration();
+                String admissionDate = studentBO.searchStudent(StudentDetailsController.selectedStudentId).getFirst().getDate();
+
+                int daysUntilEndDay = courseDuration * 7;
+                long daysDone = ChronoUnit.DAYS.between(LocalDate.parse(admissionDate), LocalDate.now());
+                int weeksDone = (int) (daysDone / 7);
+                int weeksLeft = courseDuration - weeksDone;
+
+                lblWeeksLeft.setText(String.valueOf(weeksLeft));
+                lblWeeksDone.setText(String.valueOf(weeksDone));
+            }
+        }
     }
 }

@@ -24,18 +24,18 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
+                <HBox alignment="CENTER" onMouseEntered="#resetPageOnAction" prefHeight="175.0" prefWidth="1630.0" spacing="100.0">
                     <children>
                         <VBox prefHeight="175.0" prefWidth="310.0" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 4;">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Weeks Done">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="No of Students">
                                  <font>
                                     <Font name="System Bold" size="33.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="lblWeeksDone" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                              <TextField fx:id="lblNoOfStudents" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="System Bold" size="33.0" />
                                  </font>
@@ -47,12 +47,12 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Weeks Left">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="302.0" text="Courses">
                                  <font>
                                     <Font name="System Bold" size="33.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="lblWeeksLeft" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
+                              <TextField fx:id="lblCourses" alignment="CENTER" editable="false" focusTraversable="false" promptText="TBA" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="System Bold" size="33.0" />
                                  </font>

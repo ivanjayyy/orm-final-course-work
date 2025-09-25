@@ -21,10 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +32,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LessonViewController implements Initializable {
@@ -211,7 +209,16 @@ public class LessonViewController implements Initializable {
                 return;
             }
 
-            boolean isDeleted = lessonBO.deleteLesson(inputLessonId.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = lessonBO.deleteLesson(inputLessonId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 String to = studentBO.searchStudent(inputStudentName.getValue()).getFirst().getEmail();
@@ -258,7 +265,6 @@ public class LessonViewController implements Initializable {
 
         if(LessonDetailsController.addLesson){
             inputLessonId.setText(lessonBO.getNextLessonId());
-            inputLessonDate.setValue(LocalDate.now());
 
             lblUpdate.setText("ADD");
             imgUpdate.setImage(new javafx.scene.image.Image(getClass().getResourceAsStream("/images/add.gif")));

@@ -35,8 +35,11 @@ public class InstructorsPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadLabelData();
         ButtonScale.hboxScaling(btnLessons);
+
+        List<InstructorDTO> instructorDTOS = instructorBO.getAllInstructors();
+        int instructorCount = instructorDTOS.size();
+        lblNoOfInstructors.setText(instructorCount+"");
 
         try {
             ancInstructors.getChildren().clear();
@@ -55,7 +58,31 @@ public class InstructorsPageController implements Initializable {
     private void loadLabelData() {
         List<InstructorDTO> instructorDTOS = instructorBO.getAllInstructors();
         int instructorCount = instructorDTOS.size();
-        lblNoOfInstructors.setText(instructorCount+"");
+        lblNoOfInstructors.setText(String.valueOf(instructorCount));
+
+        if (InstructorDetailsController.selectedInstructorId != null) {
+            int studentCount = 0;
+            int lessonsDone = 0;
+            List<LessonDTO> lessonDTOS = lessonBO.searchLesson(InstructorDetailsController.selectedInstructorId);
+            List<String> students = new ArrayList<>();
+
+            List<String> newStudents = new ArrayList<>();
+            for (LessonDTO lessonDTO : lessonDTOS) {
+                if (lessonDTO.getStatus().equals("Completed")) {
+                    ++lessonsDone;
+                }
+                String studentId = lessonDTO.getStudentId();
+                if (!newStudents.contains(studentId)) {
+                    newStudents.add(studentId);
+                }
+            }
+
+            students.addAll(newStudents);
+            studentCount = newStudents.size();
+
+            lblNoOfStudents.setText(String.valueOf(studentCount));
+            lblLessonsDone.setText(String.valueOf(lessonsDone));
+        }
     }
 
     public void btnLessonsOnAction(MouseEvent mouseEvent) {
@@ -86,5 +113,9 @@ public class InstructorsPageController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Page Not Found").show();
             e.printStackTrace();
         }
+    }
+
+    public void resetPageOnAction(MouseEvent mouseEvent) {
+        loadLabelData();
     }
 }

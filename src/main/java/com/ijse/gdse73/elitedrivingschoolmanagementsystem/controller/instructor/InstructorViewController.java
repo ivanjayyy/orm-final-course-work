@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class InstructorViewController implements Initializable {
@@ -237,7 +239,16 @@ public class InstructorViewController implements Initializable {
                 }
             }
 
-            boolean isDeleted = instructorBO.deleteInstructor(inputInstructorId.getText());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Delete?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> result = alert.showAndWait();
+
+            boolean isDeleted;
+
+            if (result.isPresent() && result.get() == ButtonType.YES) {
+                isDeleted = instructorBO.deleteInstructor(inputInstructorId.getText());
+            } else {
+                return;
+            }
 
             if(isDeleted){
                 new Alert(Alert.AlertType.INFORMATION, "Instructor Deleted Successfully").show();

@@ -133,33 +133,31 @@ public class UserDAOImpl implements UserDAO {
     public String getNextId() {
         Session session = factoryConfiguration.getSession();
         Transaction transaction = session.beginTransaction();
-        String nextId;
+        String nextId = "U1001";
 
         try {
-            Query query = session.createQuery("SELECT id FROM User ORDER BY id DESC", String.class);
+            Query<String> query = session.createQuery("SELECT id FROM User ORDER BY id DESC", String.class);
             query.setMaxResults(1);
-            String lastId = query.uniqueResult().toString();
+            String lastId = query.uniqueResult();
 
             if (lastId != null) {
                 String lastIdNumberString = lastId.substring(1);
                 int lastIdNumber = Integer.parseInt(lastIdNumberString);
                 int nextIdNumber = lastIdNumber + 1;
                 return String.format("U%03d", nextIdNumber);
-
-            } else {
-                nextId = "U1001";
             }
             transaction.commit();
-            return nextId;
 
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null && transaction.isActive()){
+                transaction.rollback();
+            }
             e.printStackTrace();
-            return "U1001";
 
         } finally {
             session.close();
         }
+        return nextId;
     }
 
 }
