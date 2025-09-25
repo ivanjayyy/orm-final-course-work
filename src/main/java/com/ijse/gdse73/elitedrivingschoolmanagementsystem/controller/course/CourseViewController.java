@@ -4,7 +4,6 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.*;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.util.ButtonScale;

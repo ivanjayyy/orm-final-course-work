@@ -2,7 +2,6 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.StudentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm.StudentsTM;

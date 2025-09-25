@@ -5,7 +5,6 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.CourseBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.course.CourseDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.CourseDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.InstructorDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.LessonDTO;

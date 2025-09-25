@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,17 +32,5 @@ public class Course {
     private BigDecimal fee;
 
 
-
-//    @OneToMany(mappedBy = "course")
-//    private List<Instructor> instructor;
-//
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    private List<Lesson> lesson;
-//
-//    @ManyToMany(mappedBy = "course")
-//    private List<Student> student;
-//
-//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-//    private List<Payment> payment;
 
 }

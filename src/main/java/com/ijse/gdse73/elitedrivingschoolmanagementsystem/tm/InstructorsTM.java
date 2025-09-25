@@ -2,7 +2,6 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.tm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor

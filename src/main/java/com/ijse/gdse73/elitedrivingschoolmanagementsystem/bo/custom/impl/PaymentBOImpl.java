@@ -2,7 +2,6 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.impl;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.PaymentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.PaymentException;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.exceptions.RegistrationException;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.student.StudentDetailsController;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.DAOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dao.DAOTypes;
@@ -13,7 +12,6 @@ import com.ijse.gdse73.elitedrivingschoolmanagementsystem.dto.PaymentDTO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Course;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Payment;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity.Student;
-import javafx.scene.control.Alert;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

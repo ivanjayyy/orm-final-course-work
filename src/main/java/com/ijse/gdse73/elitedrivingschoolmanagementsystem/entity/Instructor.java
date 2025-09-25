@@ -3,8 +3,6 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -33,8 +31,5 @@ public class Instructor {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-//    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
-//    private List<Lesson> lesson;
 
 }

@@ -2,7 +2,6 @@ package com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.lesson;
 
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOFactory;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.BOTypes;
-import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.InstructorBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.LessonBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.bo.custom.StudentBO;
 import com.ijse.gdse73.elitedrivingschoolmanagementsystem.controller.instructor.InstructorDetailsController;
@@ -21,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
