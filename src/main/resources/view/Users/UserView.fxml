@@ -113,7 +113,7 @@
                             <children>
                                 <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-back.gif" />
+                                        <Image url="@../../images/back.gif" />
                                     </image>
                                 </ImageView>
                             </children>
@@ -157,7 +157,7 @@
                                 </Label>
                                 <ImageView fx:id="imgUpdate" fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-pencil.gif" />
+                                        <Image url="@../../images/update.gif" />
                                     </image>
                                 </ImageView>
                             </children>
@@ -177,7 +177,7 @@
                                 </Label>
                                 <ImageView fx:id="imgDelete" fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-delete.gif" />
+                                        <Image url="@../../images/delete.gif" />
                                     </image>
                                 </ImageView>
                             </children>

@@ -88,7 +88,7 @@
                               </Label>
                               <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-money.gif" />
+                                    <Image url="@../../images/payments.gif" />
                                  </image>
                                  <HBox.margin>
                                     <Insets left="10.0" />

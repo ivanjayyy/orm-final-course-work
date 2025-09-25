@@ -100,7 +100,7 @@
                                     <children>
                                         <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-home.gif" />
+                                                <Image url="@../../images/home.gif" />
                                             </image>
                                         </ImageView>
                                     </children>

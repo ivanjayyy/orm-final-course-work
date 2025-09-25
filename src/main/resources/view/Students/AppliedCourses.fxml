@@ -39,7 +39,7 @@
                               </Label>
                               <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-add.gif" />
+                                    <Image url="@../../images/add.gif" />
                                  </image>
                               </ImageView>
                            </children>
@@ -127,7 +127,7 @@
                               </Label>
                               <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-pencil.gif" />
+                                    <Image url="@../../images/update.gif" />
                                  </image>
                               </ImageView>
                            </children>

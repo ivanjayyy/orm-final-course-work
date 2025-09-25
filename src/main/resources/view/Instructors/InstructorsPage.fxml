@@ -87,7 +87,7 @@
                               </Label>
                               <ImageView fitHeight="41.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-to-do-list.gif" />
+                                    <Image url="@../../images/lessons.gif" />
                                  </image>
                               </ImageView>
                            </children>

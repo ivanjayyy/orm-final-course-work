@@ -100,7 +100,7 @@
                               </PasswordField>
                               <ImageView fx:id="imgEye" fitHeight="45.0" fitWidth="30.0" onMouseClicked="#btnShowPasswordOnAction" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../Users/ivanj/Downloads/icons8-eye-96.png" />
+                                    <Image url="@../../images/eye-open.png" />
                                  </image>
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="16.0" />
